@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+		<meta charset="utf-8" />
+		<style>
+			.format-width{
+				width: 150px;
+			}
+		</style>
+		<script>
+			var default_url = "../shop_server/fxs/fxs_order_rate_tj.php";
+			function get_start_date() {
+				var now = new Date();
+				var year = now.getFullYear();
+				var month = now.getMonth() + 1;
+				var day = now.getDate();
+				var clock = year + "-";
+				if (month < 10)
+					clock += "0";
+				clock += month + "-";
+				clock += "01";
+				return (clock);
+			}
+			function get_end_date(){
+				var now = new Date();
+				var year = now.getFullYear();
+				var month = now.getMonth() + 1;
+				var day = now.getDate();
+				var clock = year + "-";
+				if (month < 10)
+					clock += "0";
+				clock += month + "-";
+				if (day < 10)
+					clock += "0";
+				clock += day;
+				return (clock);
+			}
+			$(function () {
+				$("input[name='start']").val(get_start_date());
+				$("input[name='end']").val(get_end_date());
+				$("#btn_statistic").click(function(){
+					var post_data = "func_type=get_data&" + $("#post_data").serialize();
+					$.ajax({
+						type:"post",
+						url:default_url,
+						async:true,
+						dataType:"json",
+						data:post_data,
+						success:function(result, status, xhr){
+							
+							for (var i = 0; i < result.series.length; i++) {
+								for (var j = 0; j < result.series[i].data.length; j++) {
+									result.series[i].data[j] = Number(result.series[i].data[j]);
+								}
+							}
+							
+							var statistic_type = $("select[name='statistic_type']").find("option:checked");
+							var title = statistic_type.text();
+							var statistic_val = statistic_type.val();
+							var y_axis_title = "";
+							switch (statistic_val){
+								case '0':
+									y_axis_title = "元";
+									break;
+								case '1':
+									y_axis_title = "单";
+									break;
+								default:
+									break;
+							}
+							
+						    $('#container').highcharts({
+						        chart: {
+						            type: 'column'
+						        },
+						        credits:{
+						        	enabled:false
+						        },
+						        title: {
+						            text: title+'活跃统计'
+						        },
+						        xAxis: {
+						            categories: result.x_axis
+						        },
+						        yAxis: {
+						            title: {
+						                text: y_axis_title
+						            }
+						        },
+						        series: result.series
+						    });
+						},
+						error:function(xhr){
+							alert(xhr.responseText);
+						}
+					});
+				});
+				
+			});
+		</script>
+	</head>
+	<body>
+		<h1>活跃度分析</h1>
+		<form id="post_data">
+			<table border="0" cellspacing="15px">
+				<tr>
+					<td>
+						统计类型：
+					</td>
+					<td>
+						<select name="statistic_type">
+							<option value="0">销售总额</option>
+							<option value="1">订单总数</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						选择数目：
+					</td>
+					<td>
+						<select name="num">
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option selected="selected" value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						排序方式：
+					</td>
+					<td>
+						<select name="order_by">
+							<option value="0">升序</option>
+							<option selected="selected" value="1">降序</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						选择日期：
+					</td>
+					<td>
+						<input type="date" name="start" value="" class="format-width" />
+						至
+						<input type="date" name="end" value="" class="format-width" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						
+					</td>
+					<td>
+						<input type="button" id="btn_statistic" value="统计" />
+					</td>
+				</tr>
+			</table>
+		</form>
+		<div id="container" style="width:1000px;height:400px"></div>
+	</body>
+</html>

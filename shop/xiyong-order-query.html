@@ -1,0 +1,220 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery.dataTables.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="scripts/resources.js"></script>
+    <script src="scripts/fundamental_tables.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="css/jquery.dataTables.min.css" type="text/css" />
+    <link rel="stylesheet" href="table_style.css" type="text/css" />
+    <script>
+        LC_SOURCE = "XIYONG_ORDER";
+
+        // translate order_details table befor auto translate;
+        pre_translate = true;
+        function pre_translate_callback() {
+            translate_titles("XIYONG_PURCHASE_ORDER_DETAIL", "#order_details");
+        };
+
+        function format(d) {
+            // `d` is the original data object for the row
+            // This array of class defines all content to display in detail panel
+            // the order should be strictly up to the hadbook and stay same with the server
+            // All item should be assigned with a type.
+            // see fundamental_tables.js : disp_format for details
+            var ref = [
+                {name: "FACCOUNTNO", type: "text"},
+                {name: "FERPFROMOTH", type: "text"},
+                {name: "FERPORDERBILLNO", type: "text"},
+                {name: "FERPBILLNO", type: "text"},
+                {name: "FCUSTNO", type: "text"},
+                {name: "FSTOCKINNO", type: "text"},
+                {name: "FSTOCKOUTNO", type: "text"},
+                {name: "FBILLERNO", type: "text"},
+                {name: "FBILLREPNO", type: "text"},
+                {name: "FCHECKERNO", type: "text"},
+                {name: "FBILLDATE", type: "text"},
+                {name: "FREMARK", type: "text"},
+                {name: "CUSTNAME", type: "text"},
+                {name: "LINKMAN", type: "text"},
+                {name: "TEL", type: "sp_sel"},
+                {name: "DELIVERNO", type: "text"},
+                {name: "DELIVERNAME", type: "text"},
+                {name: "DELIVERTIME", type: "text"},
+                {name: "ARRIVTIME", type: "text"},
+                {name: "QTY", type: "text"},
+                {name: "UNIT", type: "text"}
+
+            ]
+            var table = $('<table style="width:100%; border:solid grey 2px;"></table>');
+            var tr;
+            var count = 0;
+            $.each(ref, (function(index, item) {
+                count++;
+                if (index % 2 == 0)
+                    tr = $('<tr></tr>').addClass("detail").appendTo(table);
+                $('<td>').addClass("detail title").text(item.name).appendTo(tr);
+                $('<td>').addClass("detail content").append(disp_format(d[item.name], item.type, item.name)).appendTo(tr);
+            }));
+            //process STATUS_CODE
+            if (count % 2 )
+            if (count % 2 !== 0) {
+                $('<td>').appendTo(tr);
+                $('<td>').appendTo(tr);
+            }
+
+            var slider_wrap = $('<div>').addClass('slider').css('display','none')
+                .append(table);
+            return slider_wrap;
+
+        }
+
+        function initTable() {
+            var table_head = $('#order_head').DataTable({
+                "language": {
+                    "url": "table_ui_cn.json"
+                },
+                "columnDefs": [{
+                    "targets": "_all",
+                    "className": "dt-center"
+                }],
+                "columns": [
+                    { "data": "INDEX" },
+                    { "data": "FERPBILLNO" },
+                    { "data": "FBILLREPNO" },
+                    { "data": "FBILLREPNO" },
+                    { "data": "FCHECKERNO" },
+                    { "data": "FBILLDATE" },
+                    { "data": "QTY" },
+                    {   //status
+                        "class": 'status dt-center',
+                        "orderable": false,
+                        "data": "FLAG",
+                        "defaultContent" :'<span class="status-view">状态</span>'
+                    },
+                    {   //details
+                        "class": 'details-control dt-center',
+                        "orderable": false,
+                        "data": null,
+                        "defaultContent" :'<span class="details-controller">→_→</span>'
+                    },
+                    {   //sync
+                        "class": 'sync-control dt-center',
+                        "orderable": false,
+                        "data": null,
+                        "defaultContent" :'<span class="sync-controller">同步</span>'
+                    }
+                ],
+                "processing": true,
+                "serverSide": true,
+                "ajax": serverRoot+"/shop_server/xiyong_purchase_query.php"
+            });
+
+            var table_detail = $('#order_details').DataTable({
+                "language": {
+                    "url": "table_ui_cn.json"
+                },
+                "columnDefs": [{
+                    "targets": "_all",
+                    "className": "dt-center"
+                }],
+                "columns": [
+                    { "data": "INDEX" },
+                    { "data": "FICNO" },
+                    { "data": "FUNIT" },
+                    { "data": "FPRICE" },
+                    { "data": "FQTY" },
+                    { "data": "FAMOUNT" },
+                    { "data": "FWARENO" },
+                    { "data": "FPRODATE" },
+                    { "data": "FOUTDATE" },
+                    { "data": "FBLOCKNO" },
+                    { "data": "FREMARKDTAIL" }
+                ],
+                "processing": true,
+                "serverSide": true,
+                "ajax": serverRoot+"/shop_server/xiyong_purchase_goods_query.php?PUR_ACCOUNT_BILL_NO="
+            });
+
+            // Add event listener for opening and closing details
+            $('#order_head tbody').on('click', 'td.details-control', function () {
+                var tr = $(this).closest('tr');
+                var row = table_head.row(tr);
+                if (row.child.isShown()) {
+                    // This row is already open - close it
+                    $('div.slider', row.child()).slideUp(200, function() {
+                        row.child.hide();
+                        tr.removeClass('shown');
+                    });
+                }
+                else {
+                    // Open this row
+                    row.child(format(row.data()), 'no-padding').show();
+                    translate_titles();
+                    tr.addClass('shown');
+                    $('div.slider', row.child()).slideDown(100);
+                }
+            });
+
+            // Add event listener for reload order details
+            $('#order_head tbody').on('click', 'tr', function () {
+                var row = table_head.row($(this));
+                var order_no = row.data().FERPBILLNO;
+                table_detail.ajax.url(serverRoot+'/shop_server/xiyong_purchase_goods_query.php?PUR_ACCOUNT_BILL_NO='+order_no).load();
+            });
+        };
+    </script>
+</head>
+<body>
+    <div class="subPage">
+        <div class="title">
+            <h1>查询订单</h1>
+        </div>
+        <hr />
+    </div>
+    <table id="order_head" class="display" cellspacing="0" style="overflow-x:scroll">
+        <thead>
+            <tr>
+                <th class="title">序号</th>
+
+                <th class="title">FERPBILLNO</th>
+                <th class="title">FBILLREPNO</th>
+                <th class="title">FBILLREPNO</th>
+                <th class="title">FCHECKERNO</th>
+                <th class="title">FBILLDATE</th>
+                <th class="title">QTY</th>
+
+                <th class="title">状态</th>
+                <th class="title">详情</th>
+                <th class="title">同步</th>
+
+            </tr>
+        </thead>
+    </table>
+    <table id="order_details" class="display" cellspacing="0" style="overflow-x:scroll">
+        <thead>
+            <tr>
+                <th class="title">序号</th>
+
+                <th class="title">FICNO</th>
+                <th class="title">FUNIT</th>
+                <th class="title">FPRICE</th>
+                <th class="title">FQTY</th>
+                <th class="title">FAMOUNT</th>
+                <th class="title">FWARENO</th>
+                <th class="title">FPRODATE</th>
+                <th class="title">FOUTDATE</th>
+                <th class="title">FBLOCKNO</th>
+                <th class="title">FREMARKDTAIL</th>
+
+            </tr>
+        </thead>
+    </table>
+
+    <script>
+
+    </script>
+</body>
+</html>

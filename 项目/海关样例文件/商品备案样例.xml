@@ -1,0 +1,37 @@
+﻿<DTC_Message>
+  <MessageHead>
+    <MessageType>SKU_INFO</MessageType>
+    <MessageId>170</MessageId>
+    <ActionType>1</ActionType>
+    <MessageTime>2015-10-06T07:49:04</MessageTime>
+    <SenderId>50069607C4</SenderId>
+    <ReceiverId>CQITC</ReceiverId>
+    <UserNo>50069607C4</UserNo>
+    <Password>b7d4d6037958dce694500495c2887517</Password>
+  </MessageHead>
+  <MessageBody>
+    <DTCFlow>
+      <SKU_INFO>
+        <ESHOP_ENT_CODE>50069607C4</ESHOP_ENT_CODE>
+        <ESHOP_ENT_NAME>重庆由田甲国际贸易有限公司</ESHOP_ENT_NAME>
+        <SKU>50069607C4-2</SKU>
+        <GOODS_NAME>奶粉071002</GOODS_NAME>
+        <GOODS_SPEC>900g</GOODS_SPEC>
+        <DECLARE_UNIT>035</DECLARE_UNIT>
+        <POST_TAX_NO>01010700</POST_TAX_NO>
+        <LEGAL_UNIT>035</LEGAL_UNIT>
+        <CONV_LEGAL_UNIT_NUM>1</CONV_LEGAL_UNIT_NUM>
+        <HS_CODE>1901101000</HS_CODE>
+        <IN_AREA_UNIT>035</IN_AREA_UNIT>
+        <CONV_IN_AREA_UNIT_NUM>1</CONV_IN_AREA_UNIT_NUM>
+        <IS_EXPERIMENT_GOODS>1</IS_EXPERIMENT_GOODS>
+        <IS_CNCA_POR_DOC>0</IS_CNCA_POR_DOC>
+        <IS_ORIGIN_PLACE_CERT>0</IS_ORIGIN_PLACE_CERT>
+        <IS_TEST_REPORT>0</IS_TEST_REPORT>
+        <IS_LEGAL_TICKET>0</IS_LEGAL_TICKET>
+        <IS_MARK_EXCHANGE>0</IS_MARK_EXCHANGE>
+        <CHECK_ORG_CODE>500400</CHECK_ORG_CODE>
+      </SKU_INFO>
+    </DTCFlow>
+  </MessageBody>
+</DTC_Message>

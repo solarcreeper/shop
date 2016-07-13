@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>系统登录</title>
+<link href="css/login.css" rel="stylesheet" rev="stylesheet" type="text/css" media="all" />
+
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/jquery.form.min.js"></script>
+<script type="text/javascript" src="js/jquery.cookie.js"></script>
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+<script src="layer/layer.js"></script>
+
+<script>
+
+
+    var options = {
+        //target: '#output1',
+        //beforeSubmit: validate,
+        success: callback
+    };
+    $('#login_Form').ajaxForm(options);
+
+    function callback(responseData, statusData, xhr, $form) {
+	    var data = JSON.parse(responseData);
+		if(data.status==1){
+		       $.cookie("DISCOUNT", data.DISCOUNT , { path:'/', expires: null });
+		       $.cookie("TOKEN", data.TOKEN , { path:'/',  expires: null });
+		       $.cookie("USERNAME", data.USERNAME , { path:'/', expires: null });
+			   $.cookie("IS_ADMIN", data.IS_ADMIN , { path:'/', expires: null });
+			   window.location.href="index.html";
+		}
+		else{
+		layer.alert('登录失败！');
+		}
+    }
+
+</script>
+
+</head>
+
+<body>
+<style>
+body{height:100%; overflow:hidden; margin:0px; padding:0px;}
+.box {height:100%; background:#ff0000; position:absolute; width:100%;}
+</style>
+<div class="banner">
+
+<div class="login-aside">
+  <div id="o-box-up"></div>
+  <div id="o-box-down"  >
+   <div class="error-box"></div>
+
+   <form  id="login_Form" action="http://10.250.94.124:8080/shop_src/shop_server/login.php" method="post" >
+   <div class="fm-item">
+	   <label for="logonId" class="form-label">系统登录：</label>
+	   <input type="text" id="username" name="username" onfocus="if(this.value=='输入用户名') {this.value='';}" onblur="if(this.value=='') {this.value='输入用户名';}"  value="输入用户名"  maxlength="100" id="username" class="i-text"> <br/>
+  </div>
+
+  <div class="fm-item">
+	   <label for="logonId" class="form-label">登录密码：</label>
+	   <input type="password" name="password" value=""  onfocus="if(this.value=='输入用户名') {this.value='';}" onblur="if(this.value=='') {this.value='输入用户名';}" value="输入用户名" maxlength="100" id="password" class="i-text"  nullmsg="请设置密码！">
+  </div>
+
+  <div class="fm-item">
+	   <label for="logonId" class="form-label"></label>
+	   <input type="submit" value="" tabindex="4" id="send-btn" class="btn-login">
+  </div>
+
+  </form>
+
+  </div>
+
+</div>
+
+	<div class="bd">
+		<ul>
+			<li style="background:url(themes/theme-pic1.jpg) #CCE1F3 center 0 no-repeat;"><a target="_blank"></a></li>
+
+		</ul>
+	</div>
+
+
+</div>
+
+</body>
+</html>

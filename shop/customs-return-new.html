@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+    <link rel="stylesheet" href="form_style.css" type="text/css"></link>
+
+    <script src="js/jquery.js" type="text/javascript"></script>
+    <script src="scripts/fundamental_forms.js" type="text/javascript"></script>
+    <script type="text/javascript" src="scripts/resources.js"></script>
+    <script src="js/jquery.form.min.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+
+        LC_SOURCE = "CUSTOMS_RETURN";
+
+        function custom_validation() {
+            var pass = true;
+            //alert('Hello');
+            return pass;
+        }
+
+        function initForm() {
+            $('#myForm').attr('action', serverRoot + "/shop_server/order_return_info.php")
+        }
+
+    </script>
+
+</head>
+<body>
+    <div class="subPage">
+        <div class="title">
+            <h1>填写退货信息</h1>
+        </div>
+        <hr />
+    </div>
+    <form id="myForm" method="post">
+        <div style="text-align:center">
+            <div class="inner_form_wrapper">
+                <input type="text" name="ORIGINAL_ORDER_NO" class="mandatory" maxlength="30" />
+                <input type="text" name="ESHOP_ENT_CODE" class="mandatory" maxlength="20" />
+                <input type="text" name="RETURN_REASON" class="mandatory" maxlength="100" />
+                <input class="image" accept="image/*" type="file" target="QUALITY_REPORT">
+
+            </div>
+            <input class="button" type="submit" id="test" value="提交" />
+            <div id="output1" style="display:none"></div>
+        </div>
+    </form>
+    <script>
+    </script>
+
+</body>
+</html>

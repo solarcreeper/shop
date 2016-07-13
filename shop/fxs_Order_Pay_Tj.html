@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title></title>
+		<meta charset="utf-8" />
+		<script type="text/javascript" src="js/select4.js" ></script>
+		<link rel="stylesheet" href="css/select4.css" />
+		<style>
+			ul, li{
+				padding: 0px;
+				margin: 0px;
+			}
+			li{
+				list-style-type: none;
+			}
+			.delete{
+				width: 10px;
+				margin-left: 10px;
+			}
+		</style>
+		<script>
+			var default_url = "../shop_server/fxs/fxs_order_pay_tj.php";
+			$(document).ready(function() {
+				$("table").find("tr td:first-child").css("text-align", "right");
+			    display_user_list();
+			    
+				$("#btn_statistic").click(function(result, status, xhr) {
+					var post_data = "func_type=get_data&" + $("#post_data").serialize();
+					var username = "";
+					$("#ul_user_list").find("li").each(function(){
+						username += "&username[]="+$(this).text();
+					});
+					if(username == ""){
+						alert("请选择分销商！");
+						return;
+					}
+					post_data += username;
+					$.ajax({
+						type:"post",
+						url:default_url,
+						async:true,
+						dataType:"json",
+						data: post_data,
+						success:function(result, status, xhr){
+							console.log(xhr.responseText);
+							
+							for (var i = 0; i < result.data.length; i++) {
+								for (var j = 0; j < result.data[i].data.length; j++) {
+									result.data[i].data[j] = Number(result.data[i].data[j]);
+								}
+							}
+							var statistic_type = $("select[name='statistic_type']").find("option:checked");
+							var title = statistic_type.text();
+							var statistic_val = statistic_type.val();
+							var y_axis_title = "";
+							switch (statistic_val){
+								case '0':
+									y_axis_title = "元";
+									break;
+								case '1':
+									y_axis_title = "单";
+									break;
+								default:
+									break;
+							}
+							$('#container').highcharts({
+//						        chart: {
+//						            type: 'column'                         
+//						        },
+						        title: {
+						            text: title+"统计",
+						            x: -20 //center
+						        },
+						        xAxis: {
+						        	title:{
+						        		text: "日期"
+						        	},
+						            categories: result.x_axis
+						        },
+						        yAxis: {
+						            title: {
+						                text: y_axis_title
+						            },
+						            plotLines: [{
+						                value: 0,
+						                width: 1,
+						                color: '#808080'
+						            }]
+						        },
+						        tooltip: {
+						            valueSuffix: ''
+						        },
+						        credits:{
+						        	enabled:false
+						        },
+						        legend: {
+						            layout: 'vertical',
+						            align: 'right',
+						            verticalAlign: 'middle',
+						            borderWidth: 0
+						        },
+						        series: result.data
+						    });
+							
+						},
+						error:function(xhr){
+							console.log(xhr.responseText);
+						}
+					});
+				});
+				
+			    $("#username").select4({"ajax_url": default_url, "func_type" : "get_username"});
+			    
+			    $("#btn_add_user").click(function(){
+			    	var username = $("#username").val();
+			    	
+			    	if(is_added_user(username)){
+			    		alert("该分销商已添加！");
+			    		return;
+			    	}
+			    	
+			    	var post_data = "func_type=find_user&username="+username;
+			    	$.ajax({
+			    		type:"post",
+			    		url:default_url,
+			    		async:true,
+			    		dataType:"json",
+			    		data: post_data,
+			    		success:function(result, status, xhr){
+			    			if(result.status == "find"){
+						    	var li = $("#ul_user_list").html() + '<li class="li_user_list">'+ username +'<img src="images/delete_16px.png" class="delete" /></li>';
+						    	$("#ul_user_list").html(li);
+						    	$("#username").val("");
+						    	display_user_list();
+			    			}else{
+			    				alert("无该分销商！")
+			    			}
+			    		},
+			    		error:function(xhr){
+			    			alert(xhr.responseText);
+			    		}
+			    	});
+			    	
+			    });
+			    
+			    $("#ul_user_list").on("click", ".delete", function(){
+			    	$(this).parents("li").remove();
+			    	display_user_list();
+			    });
+			    
+			    $("#username").bind("keypress", function(event){
+			    	if(event.keyCode==13){
+			    		event.preventDefault();
+			    		$("#btn_add_user").trigger("click");
+			    	}
+			    });
+			    
+			});
+			
+			function display_user_list(){
+			    var display = $("#ul_user_list").find("li").length;
+			    if(display > 0){
+				    $("#tr_user_list").show();
+			    }else{
+				    $("#tr_user_list").hide();
+			    }
+			}
+			
+			function is_added_user(username){
+				var is_find = false;
+				$("#ul_user_list").find("li").each(function(){
+					if(username == $(this).text()){
+						is_find = true;
+					}
+				});
+				return is_find;
+			}
+		</script>
+	</head>
+
+	<body>
+		<h1>销售金额分析</h1>
+		<hr />
+		<form id="post_data">
+			<table border="0" cellspacing="10" cellpadding="0">
+				<tr>
+					<td>
+						统计类型：
+					</td>
+					<td>
+						<select name="statistic_type">
+							<option value="0">销售总额</option>
+							<option value="1">订单总数</option>
+						</select>
+					</td>
+				</tr>
+				<tr id="tr_user_list">
+					<td>
+					</td>
+					<td>
+						<ul id="ul_user_list">
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						分销商：
+					</td>
+					<td>
+						<input type="text" id="username" value="" autocomplete="off"/>
+						<input type="button"  id="btn_add_user" value="添加" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						显示间隔：
+					</td>
+					<td>
+						<select name="interval_type">
+							<option value="0">天</option>
+							<option value="1">周</option>
+							<option value="2">月</option>
+							<option value="3">季</option>
+							<option value="4">年</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="button" id="btn_statistic" value="统计" />
+					</td>
+					<td>
+
+					</td>
+				</tr>
+			</table>
+		</form>
+		<div id="container" style="width: 1000px; height: 400px;"></div>
+	</body>
+
+</html>

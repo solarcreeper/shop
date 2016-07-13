@@ -1,0 +1,169 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="css/jquery.dataTables.min.css"/>
+    <link rel="stylesheet" type="text/css" href="table_style.css"/>
+
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+
+    <script type="text/javascript" src="scripts/resources.js"></script>
+    <script type="text/javascript" src="scripts/fundamental_tables.js"></script>
+    <script>
+        LC_SOURCE = "GOODS";
+        function format(d) {
+            // `d` is the original data object for the row
+            // This array of class defines all content to display in detail panel
+            // the order should be strictly up to the hadbook and stay same with the server
+            // All item should be assigned with a type.
+            // see fundamental_tables.js : disp_format for details
+            var ref = [
+                {name: "ESHOP_ENT_CODE", type: "text"},
+                {name: "ESHOP_ENT_NAME", type: "text"},
+                {name: "EXTERNAL_NO", type: "text"},
+                {name: "SKU", type: "text"},
+                {name: "GOODS_NAME", type: "text"},
+                {name: "PRICE", type: "price"},
+                {name: "PICTURE", type: "img"},
+                {name: "GOODS_SPEC", type: "text"},
+                {name: "DECLARE_UNIT", type: "text"},
+                {name: "POST_TAX_NO", type: "text"},
+                {name: "LEGAL_UNIT", type: "text"},
+                {name: "CONV_LEGAL_UNIT_NUM", type: "text"},
+                {name: "HS_CODE", type: "text"},
+                {name: "IN_AREA_UNIT", type: "text"},
+                {name: "CONV_IN_AREA_UNIT_NUM", type: "text"},
+                {name: "IS_EXPERIMENT_GOODS", type: "bool"},
+                {name: "ORIGIN_COUNTRY_CODE", type: "text"},
+                {name: "IS_CNCA_POR", type: "bool"},
+                {name: "CNCA_POR_DOC", type: "img"},
+                {name: "ORIGIN_PLACE_CERT", type: "img"},
+                {name: "TEST_REPORT", type: "img"},
+                {name: "LEGAL_TICKET", type: "img"},
+                {name: "MARK_EXCHANGE", type: "img"},
+                {name: "CHECK_ORG_CODE", type: "text"},
+                {name: "SUPPLIER_NAME", type: "text"},
+                {name: "PRODUCER_NAME", type: "text"},
+                {name: "IS_CNCA_POR_DOC", type: "bool"},
+                {name: "IS_ORIGIN_PLACE_CERT", type: "bool"},
+                {name: "IS_TEST_REPORT", type: "bool"},
+                {name: "IS_LEGAL_TICKET", type: "bool"},
+                {name: "IS_MARK_EXCHANGE", type: "bool"},
+                {name: "STATUS_CODE", type: "text"},
+                {name: "OP_DATE", type: "text"},
+                {name: "MEMO", type: "text"},
+            ]
+            var table = $('<table style="width:100%; border:solid grey 2px;"></table>');
+            var tr;
+            var count = 0;
+            $.each(ref, (function(index, item) {
+                count++;
+                if (index % 2 == 0)
+                    tr = $('<tr></tr>').addClass("detail").appendTo(table);
+                $('<td>').addClass("detail title").text(item.name).appendTo(tr);
+                $('<td>').addClass("detail content").append(disp_format(d[item.name], item.type)).appendTo(tr);
+            }));
+            //process STATUS_CODE
+            if (count % 2 )
+            if (count % 2 !== 0) {
+                $('<td>').appendTo(tr);
+                $('<td>').appendTo(tr);
+            }
+
+            var slider_wrap = $('<div>').addClass('slider').css('display','none')
+                .append(table);
+            return slider_wrap;
+
+        }
+
+        function initTable() {
+            var table = $('#example').DataTable({
+                "language": {
+                    "url": "table_ui_cn.json"
+                },
+                "columnDefs": [{
+                    "targets": "_all",
+                    "className": "dt-center"
+                }],
+                "columns": [
+                    { "data": "INDEX" },
+                    { "data": "ESHOP_ENT_CODE" },
+                    { "data": "ESHOP_ENT_NAME" },
+                    { "data": "SKU" },
+                    { "data": "GOODS_NAME" },
+                    { "data": "GOODS_SPEC" },
+                    { "data": "DECLARE_UNIT" },
+                    { "data": "POST_TAX_NO" },
+                    {   //details
+                        "class": 'details-control dt-center',
+                        "orderable": false,
+                        "data": null,
+                        "defaultContent" :'<span class="details-controller"><i class="fa fa-search"></i></span>'
+                    }
+                ],
+                "processing": true,
+                "serverSide": true,
+                "ajax": {
+                    "url":  URL_GET_GOODS_QUERY_RECORD_TABLE,
+                    "dataSrc": showResponseInTable
+                }
+            });
+
+            // Add event listener for opening and closing details
+            $('#example tbody').on('click', 'td>span.details-controller', function () {
+                var tr = $(this).closest('tr');
+                var row = table.row(tr);
+                if (row.child.isShown()) {
+                    // This row is already open - close it
+                    $('div.slider', row.child()).slideUp(200, function() {
+                        row.child.hide();
+                        tr.removeClass('shown');
+                    });
+                }
+                else {
+                    // Open this row
+                    row.child(format(row.data()), 'no-padding').show();
+                    translate_titles();
+                    tr.addClass('shown');
+                    $('div.slider', row.child()).slideDown(100);
+                }
+            });
+        };
+    </script>
+</head>
+<body>
+<div class="maincontentinner1">
+    <div class="subPage" >
+      
+        <hr />
+    </div>
+    <table id="example" class="display" cellspacing="0" style="overflow-x:scroll" >
+	  <div class="title">
+            <h3><center><b>商品备案查询表</b></center></h3>
+         </div>
+        <thead>
+            <tr style="background-color:rgba(114,178,141,0.2)">
+                <th class="title">序号</th>
+
+                <th class="title">ESHOP_ENT_CODE</th>
+                <th class="title">ESHOP_ENT_NAME</th>
+                <th class="title">SKU</th>
+                <th class="title">GOODS_NAME</th>
+                <th class="title">GOODS_SPEC</th>
+                <th class="title">DECLARE_UNIT</th>
+                <th class="title">POST_TAX_NO</th>
+
+                <th class="title">详情</th>
+
+            </tr>
+        </thead>
+    </table>
+</div>
+    <script>
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title></title>
+		<meta charset="utf-8" />
+		<script src="js/jquery.js"></script>
+		<script src="js/jquery.dataTables.min.js" type="text/javascript"></script>
+		<script type="text/javascript" src="scripts/resources.js"></script>
+		<script src="scripts/fundamental_tables.js" type="text/javascript"></script>
+		<link rel="stylesheet" href="css/jquery.dataTables.min.css" type="text/css" />
+		<link rel="stylesheet" href="table_style.css" type="text/css" />
+		<style>
+			input,
+			label {
+				display: inline;
+				margin-right: 10px;
+			}
+		</style>
+		<script>
+			$(document).ready(function() {
+				$("#div-search").width("100%").find("select").width("10%");
+				$("tbody tr").css({
+					"font-weight": "normal"
+				});
+			})
+		</script>
+	</head>
+
+	<body>
+		<div class="subPage">
+			<div class="title">
+				<h1>渠道商指标设置</h1>
+			</div>
+			<hr />
+		</div>
+		<!-- 内容开始 -->
+		<div style="margin-bottom: 10px;" class="clearfix">
+			渠道商：
+			<input name="Keyword" type="text" id="Keyword" style="width:100px;">(渠道商代码或渠道商名称) &nbsp;&nbsp;
+			<select name="Fxs_Grade" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;Fxs_Grade\&#39;,\&#39;\&#39;)&#39;, 0)" id="Fxs_Grade">
+				<option selected="selected" value="0">－请选择等级－</option>
+				<option value="1">A</option>
+
+			</select>
+			<select name="DrDw_Pro_Brand" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;DrDw_Pro_Brand\&#39;,\&#39;\&#39;)&#39;, 0)" id="DrDw_Pro_Brand">
+				<option selected="selected" value="0">－请选择品牌－</option>
+				<option value="15">澳洲爱他美</option>
+				<option value="17">贝拉米</option>
+				<option value="20">贝亲</option>
+				<option value="22">大王</option>
+				<option value="14">德国爱他美</option>
+				<option value="19">德运</option>
+				<option value="24">韩国丽得姿</option>
+				<option value="16">荷兰牛栏</option>
+				<option value="5">乐敦制药</option>
+				<option value="3">日本cow/牛乳石碱</option>
+				<option value="12">日本Kracie/嘉娜宝</option>
+				<option value="10">日本Reveur</option>
+				<option value="2">日本Rosette/诗留美屋</option>
+				<option value="4">日本SANA/莎娜</option>
+				<option value="6">日本sunstar/巧虎</option>
+				<option value="9">日本高丝</option>
+				<option value="21">日本花王</option>
+				<option value="7">日本资生堂</option>
+				<option value="13">英国爱他美</option>
+				<option value="18">英国牛栏</option>
+				<option value="23">尤妮佳</option>
+				<option value="8">玉兴</option>
+
+			</select>
+			&nbsp;&nbsp;
+			<input type="submit" name="btn_Search" value="搜索" id="btn_Search" class="button1">
+			<div style="padding-top: 10px">
+				添加时间：
+				<input name="sel_Time" type="text" id="sel_Time" onfocus="HS_setDate(this)" style="width:80px;"> 至
+				<input name="sel_Timend" type="text" id="sel_Timend" onfocus="HS_setDate(this)" style="width:80px;">
+			</div>
+		</div>
+		<span id="lbl_No_Record"></span>
+		<table style="text-align: center;" width="100%" bordercolor="#ddd" border="1" cellspacing="0" cellpadding="0">
+			<thead>
+				<tr class="Main_List_Table_Tr1">
+					<td width="5%">
+						选择
+					</td>
+					<td width="10%">
+						渠道商代码
+					</td>
+					<td width="15%">
+						渠道商名称
+					</td>
+
+					<td width="12%">
+						渠道商等级
+					</td>
+
+					<td width="20%">
+						授权品牌
+					</td>
+					<td width="10%">
+						添加时间
+					</td>
+					<td width="18%">
+						本月指标(元)
+					</td>
+					<td>
+						操作
+					</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr onmouseover="this.className=&#39;Main_List_Table_Tr_Over&#39;" onmouseout="this.className=&#39;Main_List_Table_Tr_Out&#39;" class="Main_List_Table_Tr_Out">
+					<td>
+						<input type="checkbox" name="UserId" value="5" id="UserId_5">
+					</td>
+					<td>
+						cs
+					</td>
+					<td>
+						<a href="http://121.41.179.119/Nuosby/Fxy_Admin/Fxs_Info_ViewDetail.aspx?userNo=B1005">
+                                                    测试</a>
+					</td>
+
+					<td>
+						A
+					</td>
+
+					<td>
+						日本Rosette/诗留美屋；日本cow/牛乳石碱；日本SANA/莎娜；乐敦制药；日本sunstar/巧虎；日本资生堂；玉兴；日本高丝；日本Reveur；日本Kracie/嘉娜宝；
+					</td>
+					<td>
+						2015-10-20
+					</td>
+					<td>
+						0.00
+					</td>
+					<td>
+						<a href="javascript:void(0)" onclick="selectAll(&#39;sel_All&#39;, &#39;UserId&#39;, 0); $_Id(&#39;UserId_5&#39;).checked = true; return Fxs_Set_Target(0);">
+                                                    设置指标</a>
+					</td>
+				</tr>
+
+				<tr onmouseover="this.className=&#39;Main_List_Table_Tr_Over&#39;" onmouseout="this.className=&#39;Main_List_Table_Tr_Out&#39;" class="Main_List_Table_Tr_Over">
+					<td>
+						<input type="checkbox" name="UserId" value="2" id="UserId_2">
+					</td>
+					<td>
+						ZYLS
+					</td>
+					<td>
+						<a href="http://121.41.179.119/Nuosby/Fxy_Admin/Fxs_Info_ViewDetail.aspx?userNo=B1002">
+                                                    直营零售</a>
+					</td>
+
+					<td>
+
+					</td>
+
+					<td>
+						日本Rosette/诗留美屋；日本cow/牛乳石碱；日本SANA/莎娜；乐敦制药；日本sunstar/巧虎；日本资生堂；玉兴；日本高丝；日本Reveur；日本Kracie/嘉娜宝；英国爱他美；德国爱他美；澳洲爱他美；荷兰牛栏；贝拉米；英国牛栏；德运；贝亲；日本花王；大王；尤妮佳；
+					</td>
+					<td>
+						2015-06-24
+					</td>
+					<td>
+						0.00
+					</td>
+					<td>
+						<a href="javascript:void(0)" onclick="selectAll(&#39;sel_All&#39;, &#39;UserId&#39;, 0); $_Id(&#39;UserId_2&#39;).checked = true; return Fxs_Set_Target(0);">
+                                                    设置指标</a>
+					</td>
+				</tr>
+
+			</tbody>
+		</table>
+		<div class="padding_Top10">
+			<label for="sel_All" style="cursor: pointer">
+				<input type="checkbox" name="sel_All" id="sel_All" onclick="selectAll(&#39;sel_All&#39;, &#39;UserId&#39;);">全选/反选</label>&nbsp;
+			<input type="button" onclick="return Fxs_Set_Target(1);" value="批量设置指标" class="button1">
+
+			<div style="padding-top:10px; padding-bottom:10px; text-align:right;">
+
+				<script language="javascript" type="text/javascript">
+					function enterPageNo() {
+						try {
+							var obje = event || window.event || arguments.callee.caller.arguments[0];
+							if (obje.keyCode == 13) {
+								alert(btnSetPageSize());
+							}
+						} catch (e) {}
+					}
+
+					function btnSetPageSize() {
+						$_Id("uc_Paging_btnSetPageSize").click();
+						return "设置成功!";
+					}
+
+					function dataListReload() {
+						$_Id('uc_Paging_hdd_Post_Paging').value = 'Yes';
+						$('#uc_Paging_btndDataListReload').click();
+					}
+
+					function ucPagingGoToPage(index) {
+						$_Id('uc_Paging_hdnCurrentPageIndex').value = index;
+						$_Id('uc_Paging_hdd_Post_Paging').value = 'Yes';
+						$('#uc_Paging_btndDataListReload').click();
+						return false;
+					}
+				</script>
+				<div id="uc_Paging_pl_Post_Paging">
+
+					<!-- POST分页 -->
+
+					<span id="uc_Paging_lbl_Page">每页50个，本页2个，共2个</span>&nbsp;
+					<a id="uc_Paging_firstLbtn" disabled="disabled">第一页</a>
+					<a id="uc_Paging_preLbtn" disabled="disabled">上一页</a>
+					<a id="uc_Paging_nextLbtn" disabled="disabled">下一页</a>
+					<a id="uc_Paging_lastLbtn" disabled="disabled">最后一页</a>
+					<select name="uc_Paging$ddlPage" onchange="return ucPagingGoToPage(this.value);setTimeout(&#39;__doPostBack(\&#39;uc_Paging$ddlPage\&#39;,\&#39;\&#39;)&#39;, 0)" id="uc_Paging_ddlPage">
+						<option selected="selected" value="1">1</option>
+
+					</select>&nbsp;页
+					<input type="hidden" name="uc_Paging$hdd_Post_Paging" id="uc_Paging_hdd_Post_Paging">
+
+				</div>
+				<input type="submit" name="uc_Paging$btndDataListReload" value="Button" id="uc_Paging_btndDataListReload" style="display:none">
+				<input type="hidden" name="uc_Paging$hdnCurrentPageIndex" id="uc_Paging_hdnCurrentPageIndex" value="1">
+			</div>
+
+		</div>
+		<!-- 内容结束 -->
+	</body>
+
+</html>

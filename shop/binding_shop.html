@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title></title>
+		<meta charset="utf-8" />
+		<script type="text/javascript" src="js/jquery.js"></script>
+        <script type="text/javascript" src="js/jquery.cookie.js"></script>
+        <script type="text/javascript" src="js/jquery.form.min.js"></script>
+		<script src="js/jquery.dataTables.min.js" type="text/javascript"></script>
+		<script type="text/javascript" src="scripts/resources.js"></script>
+		<script src="scripts/fundamental_tables.js" type="text/javascript"></script>
+		<link rel="stylesheet" href="css/jquery.dataTables.min.css" type="text/css" />
+		<link rel="stylesheet" href="table_style.css" type="text/css" />
+		<style>
+			input,
+			label {
+				display: inline;
+				margin-right: 10px;
+			}
+		</style>
+		<script>
+			$(document).ready(function() {
+				$("#div-search").width("100%").find("select").width("10%");
+				$("tbody tr").css({
+					"font-weight": "normal"
+				});
+			})
+		</script>
+	</head>
+
+	<body>
+	<div class="maincontentinner1">
+		<div class="subPage">
+			<div class="title">
+				<h3>&nbsp </h3>
+			</div>
+			<hr />
+		</div>
+		<!-- 内容开始 -->
+		<div class="margin_Bottom10" style="float: left">
+			关 键 字：
+			<input name="Keyword" type="text" id="Keyword" style="width:139px;"> &nbsp; 销售日期：
+			<input name="txtTimeBegin" type="text" id="txtTimeBegin" style="width: 60px"> 至
+			<input name="txtTimeEnd" type="text" id="txtTimeEnd" style="width: 60px"> &nbsp;建立时间：
+			<input name="txtMinRegTime" type="text" id="txtMinRegTime" style="width: 60px"> 至
+			<input name="txtMaxRegTime" type="text" id="txtMaxRegTime" style="width: 60px">
+			<div style="padding-top: 10px;">
+				销售金额：
+				<input name="txtMinSaleTotal" type="text" id="txtMinSaleTotal" style="width: 60px"> 至
+				<input name="txtMaxSaleTotal" type="text" id="txtMaxSaleTotal" style="width: 60px"> &nbsp;销售次数：
+				<input name="txtMinFxs_SaleCount" type="text" id="txtMinFxs_SaleCount" style="width:60px;"> &nbsp;至
+				<input name="txtMaxFxs_SaleCount" type="text" id="txtMaxFxs_SaleCount" style="width:60px;"> &nbsp;退换货次数：
+				<input name="txtMinReturn" type="text" id="txtMinReturn" style="width: 60px"> 至
+				<input name="txtMaxReturn" type="text" id="txtMaxReturn" style="width: 60px">
+			</div>
+			<div style="padding-top: 10px;">
+				请 选 择：
+				<select name="ddlShopType" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ddlShopType\&#39;,\&#39;\&#39;)&#39;, 0)" id="ddlShopType">
+					<option selected="selected" value="0">－选择销售平台－</option>
+					<option value="实体店铺">实体店铺</option>
+					<option value="淘宝网">淘宝网</option>
+
+				</select>
+				&nbsp;区域：
+				<select name="ddlAreaID" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ddlAreaID\&#39;,\&#39;\&#39;)&#39;, 0)" id="ddlAreaID">
+					<option selected="selected" value="0">－请选择－</option>
+					<option value="1">北京</option>
+					<option value="22">天津</option>
+					<option value="43">河北</option>
+					<option value="238">山西</option>
+					<option value="380">内蒙古</option>
+					<option value="502">辽宁</option>
+					<option value="631">吉林</option>
+					<option value="709">黑龙江</option>
+					<option value="865">上海</option>
+					<option value="887">江苏</option>
+					<option value="1020">浙江</option>
+					<option value="1133">安徽</option>
+					<option value="1273">福建</option>
+					<option value="1377">江西</option>
+					<option value="1499">山东</option>
+					<option value="1674">河南</option>
+					<option value="1868">湖北</option>
+					<option value="1997">湖南</option>
+					<option value="2147">广东</option>
+					<option value="2309">广西</option>
+					<option value="2447">海南</option>
+					<option value="2476">重庆</option>
+					<option value="2520">四川</option>
+					<option value="2741">贵州</option>
+					<option value="2842">云南</option>
+					<option value="2996">西藏</option>
+					<option value="3078">陕西</option>
+					<option value="3206">甘肃</option>
+					<option value="3319">青海</option>
+					<option value="3372">宁夏</option>
+					<option value="3404">新疆</option>
+					<option value="3521">台湾</option>
+					<option value="3522">香港</option>
+					<option value="3523">澳门</option>
+					<option value="3524">海外</option>
+
+				</select>
+				&nbsp;
+				<select name="drpSort" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;drpSort\&#39;,\&#39;\&#39;)&#39;, 0)" id="drpSort">
+					<option selected="selected" value="-1">－选择排序－</option>
+					<option value="0">销售时间从近到远</option>
+					<option value="1">销售时间从远到近</option>
+					<option value="2">销售金额从高到低</option>
+					<option value="3">销售金额从低到高</option>
+					<option value="4">销售次数从多到少</option>
+					<option value="5">销售次数从少到多</option>
+
+				</select>
+				<select name="Fxs_Grade" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;Fxs_Grade\&#39;,\&#39;\&#39;)&#39;, 0)" id="Fxs_Grade">
+					<option selected="selected" value="0">－请选择等级－</option>
+					<option value="1">A</option>
+
+				</select>
+				&nbsp;&nbsp;
+				<input type="submit" name="btn_Search" value="搜索" onclick="return checkInput();" id="btn_Search" class="button1">
+				<input type="hidden" id="mark" name="mark" value="1">
+			</div>
+		</div>
+
+		<span id="lbl_No_Record"></span>
+		<table style="text-align: center;" width="100%" bordercolor="#ddd" border="1" cellspacing="0" cellpadding="0" width="1000">
+			<thead>
+				<tr class="Main_List_Table_Tr1">
+					<td width="5%">
+						选择
+					</td>
+					<td width="15%">
+						渠道商姓名
+					</td>
+					<td width="12%">
+						旺旺/QQ
+					</td>
+					<td width="20%">
+						销售次数/销售金额
+					</td>
+					<td width="12%">
+						退换货(次)
+					</td>
+					<td width="12%">
+						最近销售时间
+					</td>
+					<td>
+						操作
+					</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr onmouseover="this.className=&#39;Main_List_Table_Tr_Over&#39;" onmouseout="this.className=&#39;Main_List_Table_Tr_Out&#39;" class="Main_List_Table_Tr_Out">
+					<td>
+						<input type="checkbox" name="UserId" value="5" id="UserId">
+					</td>
+					<td>
+						<a href="http://121.41.179.119/Nuosby/Fxy_Admin/Fxs_Info_ViewDetail.aspx?userNo=B1005&tab=0">
+                                                    测试</a>
+						<br><font class="red">[A]</font>
+
+					</td>
+					<td>
+						<span class="wangwang">
+                                                    </span> <span class="qq">
+                                                        </span>
+					</td>
+					<td>
+						<a href="http://121.41.179.119/Nuosby/Fxy_Admin/Fxs_Info_ViewDetail.aspx?userNo=B1005&tab=1&sel_Time=&sel_Timend=" title="点击查看">
+                                                    3</a>
+						<br> 646.0000
+					</td>
+					<td>
+						1
+					</td>
+					<td>
+
+					</td>
+					<td>
+						<a href="javascript:void(0)" onclick="href_Page_Frame(&#39;Send_Mail.aspx?UserId=5&amp;isBatchSend=false&amp;mark=1&#39;)">
+                                                    发送邮件</a> | <a href="http://121.41.179.119/Nuosby/Fxy_Admin/Fxs_Detail_Edit.aspx?userNo=B1005">编辑</a>
+					</td>
+				</tr>
+
+				<tr onmouseover="this.className=&#39;Main_List_Table_Tr_Over&#39;" onmouseout="this.className=&#39;Main_List_Table_Tr_Out&#39;" class="Main_List_Table_Tr_Over">
+					<td>
+						<input type="checkbox" name="UserId" value="2" id="UserId">
+					</td>
+					<td>
+						<a href="http://121.41.179.119/Nuosby/Fxy_Admin/Fxs_Info_ViewDetail.aspx?userNo=B1002&tab=0">
+                                                    直营零售</a>
+
+					</td>
+					<td>
+						<span class="wangwang">
+                                                    </span> <span class="qq">
+                                                        </span>
+					</td>
+					<td>
+						<a href="http://121.41.179.119/Nuosby/Fxy_Admin/Fxs_Info_ViewDetail.aspx?userNo=B1002&tab=1&sel_Time=&sel_Timend=" title="点击查看">
+                                                    2</a>
+						<br> 492.0000
+					</td>
+					<td>
+						1
+					</td>
+					<td>
+
+					</td>
+					<td>
+						<a href="javascript:void(0)" onclick="href_Page_Frame(&#39;Send_Mail.aspx?UserId=2&amp;isBatchSend=false&amp;mark=1&#39;)">
+                                                    发送邮件</a> | <a href="http://121.41.179.119/Nuosby/Fxy_Admin/Fxs_Detail_Edit.aspx?userNo=B1002">编辑</a>
+					</td>
+				</tr>
+
+			</tbody>
+		</table>
+		<div class="padding_Top10">
+			<label for="sel_All" style="cursor: pointer">
+				<input type="checkbox" name="sel_All" id="sel_All" onclick="selectAll(&#39;sel_All&#39;, &#39;UserId&#39;);">全选/反选</label>&nbsp;
+			<input type="button" onclick="BatchSend()" class="button1" value="批量发送邮件">
+			<input type="hidden" id="batchSendMark" value="" name="batchSendMark">
+
+			<div style="padding-top:10px; padding-bottom:10px; text-align:right;">
+
+				<script language="javascript" type="text/javascript">
+					function enterPageNo() {
+						try {
+							var obje = event || window.event || arguments.callee.caller.arguments[0];
+							if (obje.keyCode == 13) {
+								alert(btnSetPageSize());
+							}
+						} catch (e) {}
+					}
+
+					function btnSetPageSize() {
+						$_Id("uc_Paging_btnSetPageSize").click();
+						return "设置成功!";
+					}
+
+					function dataListReload() {
+						$_Id('uc_Paging_hdd_Post_Paging').value = 'Yes';
+						$('#uc_Paging_btndDataListReload').click();
+					}
+
+					function ucPagingGoToPage(index) {
+						$_Id('uc_Paging_hdnCurrentPageIndex').value = index;
+						$_Id('uc_Paging_hdd_Post_Paging').value = 'Yes';
+						$('#uc_Paging_btndDataListReload').click();
+						return false;
+					}
+				</script>
+				<div id="uc_Paging_pl_Post_Paging">
+
+					<!-- POST分页 -->
+
+					<span id="uc_Paging_lbl_Page">每页50个，本页2个，共2个</span>&nbsp;
+					<a id="uc_Paging_firstLbtn" disabled="disabled">第一页</a>
+					<a id="uc_Paging_preLbtn" disabled="disabled">上一页</a>
+					<a id="uc_Paging_nextLbtn" disabled="disabled">下一页</a>
+					<a id="uc_Paging_lastLbtn" disabled="disabled">最后一页</a>
+					<select name="uc_Paging$ddlPage" onchange="return ucPagingGoToPage(this.value);setTimeout(&#39;__doPostBack(\&#39;uc_Paging$ddlPage\&#39;,\&#39;\&#39;)&#39;, 0)" id="uc_Paging_ddlPage">
+						<option selected="selected" value="1">1</option>
+
+					</select>&nbsp;页
+					<input type="hidden" name="uc_Paging$hdd_Post_Paging" id="uc_Paging_hdd_Post_Paging">
+
+				</div>
+				<input type="submit" name="uc_Paging$btndDataListReload" value="Button" id="uc_Paging_btndDataListReload" style="display:none">
+				<input type="hidden" name="uc_Paging$hdnCurrentPageIndex" id="uc_Paging_hdnCurrentPageIndex" value="1">
+			</div>
+
+			<a id="batchSend" href="http://121.41.179.119/Nuosby/Fxy_Admin/Fxs_Analyze_List.aspx?time=0.39580615935847163&parentCode=162#" style="display: none"></a>
+		</div>
+		<div style="padding-top: 10px;">
+		</div>
+		</div>
+		<!-- 内容结束 -->
+	</body>
+
+</html>

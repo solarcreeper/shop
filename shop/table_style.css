@@ -1,0 +1,61 @@
+.details-controller {
+    color: #FF0000;
+    cursor:pointer;
+}
+
+img.img_preview_in_detail {
+    max-width: 200px;
+    max-height: 100px;
+}
+
+#img_preview {
+    position: fixed;
+    display: none;
+    left: 50%;
+    top: 50%;
+    margin: -300px 0 0 -200px;
+    border: solid #DDD 1px;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 10px 10px 10px #BBB;
+    background-color: white;
+}
+
+#img_preview img {
+    max-width: 500px;
+}
+
+td {
+    vertical-align: middle;
+}
+
+tr.detail:hover {
+    background-color: white !important;
+}
+
+td.detail.title {
+    background-color: #F9F9F9;
+    vertical-align: middle;
+    width: 18%;
+}
+
+td.detail.content {
+    width: 32%;
+}
+
+td.detail.content:hover {
+    background-color: #F9F9F9;
+}
+
+.dataTables_length,
+.dataTables_info {
+    border: solid #DDD 0px !important;
+}
+
+table.dataTable tbody td.no-padding {
+    padding:15px;
+}
+
+div.dataTables_wrapper {
+    margin-bottom: 5em;
+}

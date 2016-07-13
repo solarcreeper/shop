@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="form_style.css"/>
+    <link rel="stylesheet" type="text/css" href="css/chosen.min.css"/>
+
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="js/jquery.form.min.js"></script>
+    <script type="text/javascript" src="js/chosen.jquery.min.js"></script>
+
+    <script type="text/javascript" src="scripts/resources.js"></script>
+    <script type="text/javascript" src="scripts/fundamental_forms.js"></script>
+
+    <script type="text/javascript">
+
+        LC_SOURCE = "GOODS";
+
+        function custom_validation() {
+            var pass = true;
+            //alert('Hello');
+            return pass;
+        }
+
+        function initForm() {
+            $('#myForm').attr('action', URL_POST_FORM_GOODS_ADD_IMPORT)
+        }
+
+    </script>
+
+</head>
+<body>
+<div class="maincontentinner1" >
+    <div class="subPage">
+        <div class="title">
+            <h3>&nbsp </h3>
+        </div>
+        <hr />
+    </div>
+    <form id="myForm" method="post"  >
+        <div style="text-align:center">
+            <div class="inner_form_wrapper" >
+                <input type="text" name="ESHOP_ENT_CODE"  class="mandatory"  maxlength="20" />
+                <input type="text" name="ESHOP_ENT_NAME" class="mandatory"  maxlength="100" />
+                <input type="text" name="EXTERNAL_NO"  maxlength="30" />
+                <input type="text" name="SKU" class="mandatory" maxlength="20" />
+                <input type="text" name="GOODS_NAME" class="mandatory"  maxlength="100" />
+                <input type="text" name="PRICE" class="mandatory"  maxlength="30" />
+
+                <input class="image" accept="image/*" type="file" target="PICTURE" />
+
+                <hr style="display:none">
+
+                <input type="text" name="GOODS_SPEC" class="mandatory" maxlength="600" />
+                <input type="text" name="DECLARE_UNIT" class="mandatory" maxlength="4" />
+                <select name="POST_TAX_NO" class="mandatory"/>
+                <input type="text" name="TAX_RATE" class="mandatory" readonly maxlength="10" />
+                <input type="text" name="LEGAL_UNIT" maxlength="4" />
+                <input type="text" name="CONV_LEGAL_UNIT_NUM" maxlength="20" />
+                <input type="text" name="HS_CODE" maxlength="20" />
+                <input type="text" name="IN_AREA_UNIT" maxlength="20" />
+                <input type="text" name="CONV_IN_AREA_UNIT_NUM" maxlength="20" />
+                <select name="IS_EXPERIMENT_GOODS" class="mandatory">
+                    <option value="" hidden="hidden">请选择</option>
+                    <option value="0">否</option>
+                    <option value="1">是</option>
+                </select>
+                <input type="text" name="ORIGIN_COUNTRY_CODE" maxlength="4" />
+                <input type="text" name="PRODUCER_NAME" maxlength="200" />
+
+                <input type="text" name="CHECK_ORG_CODE" maxlength="10" />
+                <input type="text" name="SUPPLIER_NAME" maxlength="200" />
+                
+				  <select name="IS_CNCA_POR" >
+                    <option value="">请选择</option>
+                    <option value="0">否</option>
+                    <option value="1">是</option>
+                </select>
+                <select name="IS_CNCA_POR_DOC" class="mandatory">
+                    <option value="" hidden="hidden">请选择</option>
+                    <option value="0">否</option>
+                    <option value="1">是</option>
+                </select>
+                <select name="IS_ORIGIN_PLACE_CERT" class="mandatory">
+                    <option value="" hidden="hidden">请选择</option>
+                    <option value="0">否</option>
+                    <option value="1">是</option>
+                </select>
+                <select name="IS_TEST_REPORT" class="mandatory">
+                    <option value="" hidden="hidden">请选择</option>
+                    <option value="0">否</option>
+                    <option value="1">是</option>
+                </select>
+                <select name="IS_LEGAL_TICKET" class="mandatory">
+                    <option value="" hidden="hidden">请选择</option>
+                    <option value="0">否</option>
+                    <option value="1">是</option>
+                </select>
+                <select name="IS_MARK_EXCHANGE" class="mandatory">
+                    <option value="" hidden="hidden">请选择</option>
+                    <option value="0">否</option>
+                    <option value="1">是</option>
+                </select>
+
+                <input class="image" accept="image/*" type="file" target="CNCA_POR_DOC">
+                <input class="image" accept="image/*" type="file" target="ORIGIN_PLACE_CERT">
+                <input class="image" accept="image/*" type="file" target="TEST_REPORT">
+                <input class="image" accept="image/*" type="file" target="LEGAL_TICKET">
+                <input class="image" accept="image/*" type="file" target="MARK_EXCHANGE" />
+
+            </div>
+            <input class="button" type="submit" id="test" value="提交" />
+            <div id="output1" style="display:none"></div>
+        </div>
+    </form>
+</div>
+</body>
+</html>

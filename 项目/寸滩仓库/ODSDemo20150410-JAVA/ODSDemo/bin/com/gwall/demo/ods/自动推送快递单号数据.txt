@@ -1,0 +1,1 @@
+appkey=test&service=pubSyncDeliveryInfo&format=JSON&content={"orderCode":"100000037","appkey":"Gappkey_standard_cq_qqg","type":"expressNo","companyNumber":"ZTO90001","companyName":"ÖÐÍ¨¿ìµÝ","companyCode":"ZTO"}

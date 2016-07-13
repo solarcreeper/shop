@@ -1,0 +1,31 @@
+.select4_box {
+	border: 1px solid #5897fb;
+	position: absolute;
+	width: 250px;
+	background: #fff;
+	border-radius: 4px;
+	-webkit-box-shadow: 0 4px 5px rgba(0, 0, 0, .15);
+	box-shadow: 0 4px 5px rgba(0, 0, 0, .15);
+	z-index: 9999;
+}
+
+.select4_box ul {
+	padding: 0px;
+	margin: 5px;
+}
+
+.select4_box ul li {
+	list-style: none;
+	padding: 3px 7px 4px;
+	cursor: pointer;
+}
+
+.select4_box ul li:hover {
+	background: #51A9A9;
+	color: #fff;
+}
+
+.select4_box ul li.active {
+	background: #3875d7;
+	color: #fff;
+}

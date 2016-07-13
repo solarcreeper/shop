@@ -1,0 +1,22 @@
+<DTC_Message>
+  <MessageHead>
+    <MessageType>SKU_INFO_FB</MessageType>
+    <MessageId>97095FA7A22B4231BFCD2F1C4F4500A1</MessageId>
+    <MessageTime>2015-11-16 18:02:59</MessageTime>
+    <SenderId>CQITC</SenderId>
+    <ReceiverId>50122604E2</ReceiverId>
+    <PlatFormNo />
+    <CustomCode />
+    <SeqNo>8bb7b16f-058a-4e38-8105-0fb1b78314fd</SeqNo>
+    <Note />
+  </MessageHead>
+  <MessageBody>
+    <DTCFlow>
+      <SKU_INFO_FB>
+        <SKU>50052602BEI000000022</SKU>
+        <STATUS_CODE>40</STATUS_CODE>
+        <OP_DATE>2015-11-16T18:02:53</OP_DATE>
+      </SKU_INFO_FB>
+    </DTCFlow>
+  </MessageBody>
+</DTC_Message>

@@ -1,0 +1,32 @@
+<DTC_Message>
+  <MessageHead>
+    <MessageType>MES_ASK_INFO</MessageType>
+    <MessageId>588f2942-5740-485d-86e8-6ccf73db4842</MessageId>
+    <MessageTime>2014-12-17T09:49:02</MessageTime>
+    <SenderId>CQITC</SenderId>
+    <SenderAddress />
+    <ReceiverId>50052602BE</ReceiverId>
+    <ReceiverAddress />
+    <PlatFormNo />
+    <CustomCode />
+    <SeqNo>6c5cf180200b4f4bb41b30c4fb46bac3</SeqNo>
+    <Note />
+  </MessageHead>
+  <MessageBody>
+    <DTCFlow>
+      <MES_ASK_INFO>
+        <MESSAGE_TYPE>ORDER_SET_TRANSPORT_NO</MESSAGE_TYPE>
+        <WORK_NO>14121621001AP0R</WORK_NO>
+        <CREATED_NO>9de42e8c5f844ae395c15a2aaa9f4457</CREATED_NO>
+        <OP_DATE>2014-12-17T09:49:02</OP_DATE>
+        <SUCCESS>1</SUCCESS>
+        <MEMO>原始订单号'14121621001AP0R'的分运单号入库成功</MEMO>
+        <UDF1 />
+        <UDF2 />
+        <UDF3 />
+        <UDF4 />
+        <UDF5 />
+      </MES_ASK_INFO>
+    </DTCFlow>
+  </MessageBody>
+</DTC_Message>

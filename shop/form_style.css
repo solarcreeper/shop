@@ -1,0 +1,90 @@
+﻿.error {
+            color:#FF0000;
+        }
+
+img.img_preview {
+            margin:10px 0;
+            max-height:100px;
+            max-width: 200px;
+        }
+input.hidden {
+            visibility:hidden;
+        }
+
+div.form_item {
+    display:inline-block;
+    vertical-align:20%;
+    margin-bottom: 25px;
+}
+
+div.form_item_title {
+    width:240px;
+    text-align:right;
+    margin-left: 50px;
+    margin-right:20px;
+    vertical-align:baseline;
+}
+
+div.inner_form_wrapper {
+    text-align: left;
+    margin-left: -100px;
+    display: inline-block;
+}
+
+.order_detail_item {
+
+}
+
+.order_detail_title {
+    display: inline;
+    margin-left:50px;
+    margin-right:50px
+}
+
+.order_detail_item_border {
+    margin: 10px 0;
+    padding-top: 20px;
+    border: solid #CCC 1px;
+    border-radius: 5px;
+}
+#test{
+	padding-left: 50px!important;
+	padding-right: 50px!important;
+	background: #e7f5f4;
+    background: -webkit-gradient(linear, left top, left bottom, from(#bae1b8), to(#e7f5f4) );            
+	background:-moz-linear-gradient(-90deg, #bae1b8, #e7f5f4);            
+	filter:progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr='#bae1b8', EndColorStr='#e7f5f4');
+	}
+	
+#test:hover {                      
+    background: #bae1b8;            
+    background: -webkit-gradient(linear, left top, left bottom, from(#e7f5f4), to(#bae1b8) );            
+    background: -moz-linear-gradient(-90deg, #e7f5f4, #bae1b8);            
+    filter:progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr='#e7f5f4', EndColorStr='#bae1b8'); }                
+#test:active{
+	 background: #e7f5f4;
+	} 
+.button {       
+     margin:12px;            
+     text-decoration: none;            
+     font: bold 18px/35px 'Microsoft YaHei',Arial, Helvetica; /*Change the em value to scale the button*/    
+     : inline-block;            
+     text-align: center;            
+     color: #5c6161;                              
+     border: 1px solid #9c9c9c; /* Fallback style */            
+     border: 1px solid rgba(0, 0, 0, 0.3);                                    
+     text-shadow: 0 1px 0 rgba(0,0,0,0.4);                        
+     box-shadow: 0 0 .05em rgba(0,0,0,0.4);       
+     -moz-box-shadow: 0 0 .05em rgba(0,0,0,0.4);           
+     -webkit-box-shadow: 0 0 .05em rgba(0,0,0,0.4);
+	}
+
+#loading_prompt {
+    text-align: center;
+    border: solid #CCC 1px;
+    border-radius: 5px;
+    margin: 50px;
+    vertical-align: middle;
+    height: 100px;
+    line-height: 100px;
+}

@@ -1,0 +1,28 @@
+<DTC_Message>
+  <MessageHead>
+    <MessageType>ORDER_INFO_FB</MessageType>
+    <MessageId>858a4320-b0f2-454b-a6b3-e3d96daaaf62</MessageId>
+    <MessageTime>2014-07-06T23:58:42</MessageTime>
+    <SenderId>CQITC</SenderId>
+    <SenderAddress />
+    <ReceiverId>500696078N</ReceiverId>
+    <ReceiverAddress />
+    <PlatFormNo />
+    <CustomCode />
+    <SeqNo>BMSD-I140704-0000059</SeqNo>
+    <Note />
+    <UserNo />
+    <Password />
+  </MessageHead>
+  <MessageBody>
+    <DTCFlow>
+      <ORDER_INFO_FB>
+        <ORDER_NO>BMSD-I140704-0000059</ORDER_NO>
+        <ORIGINAL_ORDER_NO>KPGBMSD0000000085</ORIGINAL_ORDER_NO>
+        <STATUS_CODE>40</STATUS_CODE>
+        <OP_DATE>2014-07-07T00:00:11</OP_DATE>
+        <MEMO>银行预扣失败超过3天，系统自动审批退回。</MEMO>
+      </ORDER_INFO_FB>
+    </DTCFlow>
+  </MessageBody>
+</DTC_Message>

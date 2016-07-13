@@ -1,0 +1,168 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="form_style.css"/>
+    <link rel="stylesheet" type="text/css" href="css/jquery-ui.min.css"/>
+
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="js/jquery.form.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui.min.js"></script>
+
+    <script type="text/javascript" src="scripts/resources.js"></script>
+    <script type="text/javascript" src="scripts/fundamental_forms.js"></script>
+
+    <script type="text/javascript">
+
+        LC_SOURCE = "PURCHASE";
+
+        function custom_validation() {
+            var pass = true;
+            //alert('Hello');
+            return pass;
+        }
+
+        function initForm() {
+            $('#myForm').attr('action', URL_POST_FORM_GOODS_PURCHASE)
+        }
+
+        var goodCount = 0;
+
+        function rmGood(index) {
+            $('#good_no_'+index).remove();
+        }
+
+        function addGood() {
+            var wrap_div =
+                $('<div></div>')
+                .addClass('inner_form_wrapper')
+                .addClass('order_detail_item')
+                .appendTo('#order_details')
+                .wrap('<div id="good_no_'+goodCount+'" class="order_detail_item_border">');
+            //title
+            $(wrap_div)
+            .append('<h4 class="order_detail_title">GOOD_NO_'+(goodCount+1)+'</h4>')//title
+            .append('<input type="button" class="noFormat" value="Del" onclick="rmGood('+goodCount+')"/>')//rm button
+            .append('<hr>');
+            $('<input />', {
+                type: "text",
+                altname: "F_ICNO",
+                name: "PUR_DETAIL["+goodCount+"][F_ICNO]",
+                class: "mandatory",
+                maxlength: "60"
+            }).appendTo(wrap_div);
+            $('<input />', {
+                type: "text",
+                altname: "F_UNIT",
+                name: "PUR_DETAIL["+goodCount+"][F_UNIT]",
+                class: "mandatory",
+                maxlength: "60"
+            }).appendTo(wrap_div);
+            $('<input />', {
+                type: "text",
+                altname: "F_PRICE",
+                name: "PUR_DETAIL["+goodCount+"][F_PRICE]",
+                class: "mandatory",
+                maxlength: "60",
+                value: "1"
+            }).appendTo(wrap_div);
+            $('<input />', {
+                type: "text",
+                altname: "F_QTY",
+                name: "PUR_DETAIL["+goodCount+"][F_QTY]",
+                class: "mandatory",
+                maxlength: "8"
+            }).appendTo(wrap_div);
+            $('<input />', {
+                type: "text",
+                altname: "F_AMOUNT",
+                name: "PUR_DETAIL["+goodCount+"][F_AMOUNT]",
+                maxlength: "60"
+            }).appendTo(wrap_div);
+            $('<input />', {
+                type: "text",
+                altname: "F_WARE_NO",
+                name: "PUR_DETAIL["+goodCount+"][F_WARE_NO]",
+                maxlength: "10"
+            }).appendTo(wrap_div);
+            $('<input />', {
+                type: "text",
+                altname: "F_PRO_DATE",
+                name: "PUR_DETAIL["+goodCount+"][F_PRO_DATE]",
+                class: "datepicker",
+                maxlength: "30"
+            }).appendTo(wrap_div);
+            $('<input />', {
+                type: "text",
+                altname: "F_OUT_DATE",
+                name: "PUR_DETAIL["+goodCount+"][F_OUT_DATE]",
+                class: "datepicker",
+                maxlength: "30"
+            }).appendTo(wrap_div);
+            $('<input />', {
+                type: "text",
+                altname: "F_BLOCK_NO",
+                name: "PUR_DETAIL["+goodCount+"][F_BLOCK_NO]",
+                maxlength: "30"
+            }).appendTo(wrap_div);
+            $('<input />', {
+                type: "text",
+                altname: "F_REMARK_DTAIL",
+                name: "PUR_DETAIL["+goodCount+"][F_REMARK_DTAIL]",
+                maxlength: "500"
+            }).appendTo(wrap_div);
+
+            formatForm('#good_no_'+goodCount, "PURCHASE_DETAIL");
+            goodCount++;
+
+        }
+
+    </script>
+
+
+
+</head>
+<body>
+<div class="maincontentinner1">
+    <div class="subPage">
+        <div class="title">
+           <h3>&nbsp </h3>
+        </div>
+        <hr />
+    </div>
+    <form id="myForm" method="post">
+        <div style="text-align:center">
+            <div class="inner_form_wrapper">
+                <input type="text" name="F_ACCOUNT_NO" class="mandatory" maxlength="3" />
+                <input type="text" name="F_ERP_FROMOTH" maxlength="50" />
+                <input type="text" name="F_ERP_ORDER_BILL_NO" maxlength="50" />
+                <input type="text" name="F_CUST_NO" class="mandatory" maxlength="10" />
+                <input type="text" name="F_BILLER_NO" class="mandatory" maxlength="15" />
+                <input type="text" name="F_BILLER_P_NO" class="mandatory" maxlength="15" />
+                <input type="text" name="F_CHECKER_NO" class="mandatory" maxlength="15" />
+                <input type="text" name="F_BILL_DATE" class="mandatory datepicker" maxlength="15" />
+                <input type="text" name="F_REMARK" maxlength="500" />
+                <input type="text" name="CUSTNAME" class="mandatory" maxlength="100" />
+                <input type="text" name="LINKMAN" class="mandatory" maxlength="20" />
+                <input type="text" name="TEL" class="mandatory" maxlength="15" />
+                <input type="text" name="DELIVER_NO" maxlength="30" />
+                <input type="text" name="DELIVER_NAME" maxlength="30" />
+                <input type="text" name="DELIVER_TIME" class="datepicker" maxlength="30"/>
+                <input type="text" name="ARRIVE_TIME" class="datepicker" maxlength="30" />
+                <input type="text" name="UNIT" maxlength="10" />
+
+            </div>
+            <div id="order_details"></div>
+            <input type="button" class="noFormat" value="Add Good" onclick="addGood()"/>
+            <input class="button" type="submit" id="test" value="提交 "/>
+            <div id="output1" style="display:none"></div>
+        </div>
+    </form>
+    <script>
+        //addGood()
+    </script>
+</div>
+</body>
+</html>

@@ -1,0 +1,1 @@
+appkey=test&service=pubCancelOrderResult&format=JSON&content={"uuid":"5b3892b2-fd22-4f77-8ea0-4c7555a7ed19","orderCode":"100000037","outerCode":"SO201400000102","type":"cancelOrderResult","isSuccess":"true","msg":"订单已取消!"}

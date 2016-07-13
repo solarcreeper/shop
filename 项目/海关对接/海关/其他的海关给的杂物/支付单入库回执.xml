@@ -1,0 +1,32 @@
+﻿<DTC_Message>
+  <MessageHead>
+    <MessageType>MES_ASK_INFO</MessageType>
+    <MessageId>bb2bdc8c-b11f-488a-a366-39a3d01b83c6</MessageId>
+    <MessageTime>2014-07-04T15:06:58</MessageTime>
+    <SenderId>CQITC</SenderId>
+    <SenderAddress />
+    <ReceiverId>50052602BE</ReceiverId>
+    <ReceiverAddress />
+    <PlatFormNo />
+    <CustomCode />
+    <SeqNo>fbd49c46-10c3-4182-91f8-176ae7c568ac</SeqNo>
+    <Note />
+  </MessageHead>
+  <MessageBody>
+    <DTCFlow>
+      <MES_ASK_INFO>
+        <MESSAGE_TYPE>PAYMENT_INFO</MESSAGE_TYPE>
+        <WORK_NO>KPGBMSD0000000100</WORK_NO>
+        <CREATED_NO>b02f8dce07a8453eabde375e85ea5bec</CREATED_NO>
+        <OP_DATE>2014-07-04T15:06:58</OP_DATE>
+        <SUCCESS>1</SUCCESS>
+        <MEMO>支付单入库成功</MEMO>
+        <UDF1 />
+        <UDF2 />
+        <UDF3 />
+        <UDF4 />
+        <UDF5 />
+      </MES_ASK_INFO>
+    </DTCFlow>
+  </MessageBody>
+</DTC_Message>

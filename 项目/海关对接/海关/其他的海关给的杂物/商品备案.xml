@@ -1,0 +1,30 @@
+﻿<DTC_Message>
+  <MessageHead>
+    <MessageType>SKU_INFO</MessageType>
+    <MessageId>2f88217d-f077-456b-85ca-a35300b2533e</MessageId>
+    <ActionType>1</ActionType>
+    <MessageTime>2014-06-23 10:49:15</MessageTime>
+    <SenderId>50052602BE</SenderId>
+    <ReceiverId>CQITC</ReceiverId>
+    <UserNo>50052602BE</UserNo>
+    <Password>c9e4d3732a97104a2f4808571d07bffc</Password>
+  </MessageHead>
+  <MessageBody>
+    <DTCFlow>
+      <SKU_INFO>
+        <ESHOP_ENT_CODE>50052602BE</ESHOP_ENT_CODE>
+        <ESHOP_ENT_NAME>重庆商社电子商务有限公司</ESHOP_ENT_NAME>
+        <SKU>50052602BEI000000031</SKU>
+        <GOODS_NAME>50052602BEI000000031</GOODS_NAME>
+        <GOODS_SPEC>Nutrilon 荷兰本土牛栏奶粉1段</GOODS_SPEC>
+        <DECLARE_UNIT>007</DECLARE_UNIT>
+        <POST_TAX_NO>06010200</POST_TAX_NO>
+        <LEGAL_UNIT>007</LEGAL_UNIT>
+        <CONV_LEGAL_UNIT_NUM>1</CONV_LEGAL_UNIT_NUM>
+        <HS_CODE>4202210090</HS_CODE>
+        <IN_AREA_UNIT>007</IN_AREA_UNIT>
+        <CONV_IN_AREA_UNIT_NUM>1</CONV_IN_AREA_UNIT_NUM>
+      </SKU_INFO>
+    </DTCFlow>
+  </MessageBody>
+</DTC_Message>

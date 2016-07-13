@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title></title>
+		<meta charset="utf-8" />
+		<script src="js/jquery.js"></script>
+		<script src="js/jquery.dataTables.min.js" type="text/javascript"></script>
+		<script type="text/javascript" src="scripts/resources.js"></script>
+		<script src="scripts/fundamental_tables.js" type="text/javascript"></script>
+		<link rel="stylesheet" href="css/jquery.dataTables.min.css" type="text/css" />
+		<link rel="stylesheet" href="table_style.css" type="text/css" />
+		<style>
+			input,
+			label {
+				display: inline;
+				margin-right: 10px;
+			}
+		</style>
+		<script>
+			$(document).ready(function() {
+				$("#div-search").width("100%").find("select").width("10%");
+				$("tbody tr").css({
+					"font-weight": "normal"
+				});
+			})
+		</script>
+	</head>
+
+	<body>
+		<div class="subPage">
+			<div class="title">
+				<h1>官方直属店列表</h1>
+			</div>
+			<hr />
+		</div>
+		<!-- 内容开始 -->
+		<div class="margin_Bottom10">
+			网店名称：
+			<input name="Keyword" type="text" id="Keyword" style="width:80px;">
+			<select name="FxsNo" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;FxsNo\&#39;,\&#39;\&#39;)&#39;, 0)" id="FxsNo">
+				<option selected="selected" value="0">－请选择渠道商－</option>
+				<option value="B1002">直营零售</option>
+
+			</select>
+			<select name="Shop_Web" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;Shop_Web\&#39;,\&#39;\&#39;)&#39;, 0)" id="Shop_Web">
+				<option selected="selected" value="0">－请选择网店平台－</option>
+				<option value="淘宝网">淘宝网</option>
+				<option value="拍拍网">拍拍网</option>
+				<option value="QQ网购">QQ网购</option>
+				<option value="京东商城">京东商城</option>
+				<option value="当当网">当当网</option>
+				<option value="亚马逊">亚马逊</option>
+				<option value="1号店">1号店</option>
+				<option value="V+商城">V+商城</option>
+				<option value="邮乐网">邮乐网</option>
+				<option value="又一城商城">又一城商城</option>
+				<option value="独立商城">独立商城</option>
+				<option value="实体店铺">实体店铺</option>
+				<option value="库巴网">库巴网</option>
+				<option value="飞牛网">飞牛网</option>
+				<option value="阿里巴巴">阿里巴巴</option>
+				<option value="优购网">优购网</option>
+				<option value="苏宁易购">苏宁易购</option>
+				<option value="聚美优品">聚美优品</option>
+				<option value="唯品会">唯品会</option>
+				<option value="拍鞋网">拍鞋网</option>
+				<option value="美丽说">美丽说</option>
+				<option value="乐蜂网">乐蜂网</option>
+				<option value="有赞">有赞</option>
+				<option value="蘑菇街">蘑菇街</option>
+				<option value="折800">折800</option>
+				<option value="微店">微店</option>
+				<option value="有赞">有赞</option>
+				<option value="贝贝网">贝贝网</option>
+				<option value="速卖通">速卖通</option>
+				<option value="其它">其它</option>
+
+			</select>
+			<select name="Shop_Type" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;Shop_Type\&#39;,\&#39;\&#39;)&#39;, 0)" id="Shop_Type">
+				<option selected="selected" value="0">－请选择网店类型－</option>
+				<option value="1">B2C平台店</option>
+				<option value="2">C2C平台店</option>
+				<option value="3">分销平台</option>
+				<option value="4">天猫国际</option>
+				<option value="5">京东海外购</option>
+				<option value="6">苏宁海外购</option>
+
+			</select>
+			<input type="submit" name="btn_Search" value="搜索" id="btn_Search" class="button1">
+		</div>
+		<span id="lbl_No_Record"></span>
+		<table style="text-align: center;" width="100%" border="1" cellspacing="0" cellpadding="0" bordercolor="#ddd">
+			<thead>
+				<tr class="Main_List_Table_Tr1">
+					<td width="8%">
+						选择
+					</td>
+					<td width="20%">
+						网店授权号
+					</td>
+					<td width="22%">
+						网店名称
+					</td>
+					<td width="15%">
+						网店平台
+					</td>
+					<td width="18%">
+						网店类型
+					</td>
+					<td>
+						添加时间
+					</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr onmouseover="this.className=&#39;Main_List_Table_Tr_Over&#39;" onmouseout="this.className=&#39;Main_List_Table_Tr_Out&#39;" class="Main_List_Table_Tr_Out">
+					<td>
+						<input type="checkbox" name="Id" value="2">
+					</td>
+					<td>
+						直营零售
+						<br>BZ-ZYLS-002
+					</td>
+					<td>
+						<a href="http://shop63083064.taobao.com/" target="_blank">
+                                                    
+                                                    海外搬运工韩韩的店</a>
+					</td>
+					<td>
+						淘宝网
+					</td>
+					<td>
+						B2C平台店
+
+					</td>
+					<td>
+						2015-10-20 11:12:40
+					</td>
+				</tr>
+
+				<tr onmouseover="this.className=&#39;Main_List_Table_Tr_Over&#39;" onmouseout="this.className=&#39;Main_List_Table_Tr_Out&#39;" class="Main_List_Table_Tr_Out">
+					<td>
+						<input type="checkbox" name="Id" value="1">
+					</td>
+					<td>
+						直营零售
+						<br>BZ-ZYLS-001
+					</td>
+					<td>
+						<a href="http://xn--7st7ku62k/" target="_blank">
+                                                    
+                                                    测试店铺</a>
+					</td>
+					<td>
+						实体店铺
+					</td>
+					<td>
+						B2C平台店
+
+					</td>
+					<td>
+						2015-10-20 11:02:35
+					</td>
+				</tr>
+
+			</tbody>
+		</table>
+		<div class="padding_Top10">
+			<label for="sel_All" style="cursor: pointer">
+			</label>
+		</div>
+
+		<div style="padding-top:10px; padding-bottom:10px; text-align:right;">
+
+			<script language="javascript" type="text/javascript">
+				function enterPageNo() {
+					try {
+						var obje = event || window.event || arguments.callee.caller.arguments[0];
+						if (obje.keyCode == 13) {
+							alert(btnSetPageSize());
+						}
+					} catch (e) {}
+				}
+
+				function btnSetPageSize() {
+					$_Id("uc_Paging_btnSetPageSize").click();
+					return "设置成功!";
+				}
+
+				function dataListReload() {
+					$_Id('uc_Paging_hdd_Post_Paging').value = 'Yes';
+					$('#uc_Paging_btndDataListReload').click();
+				}
+
+				function ucPagingGoToPage(index) {
+					$_Id('uc_Paging_hdnCurrentPageIndex').value = index;
+					$_Id('uc_Paging_hdd_Post_Paging').value = 'Yes';
+					$('#uc_Paging_btndDataListReload').click();
+					return false;
+				}
+			</script>
+			<div id="uc_Paging_pl_Post_Paging">
+
+				<!-- POST分页 -->
+
+				<span id="uc_Paging_lbl_Page">每页50个，本页2个，共2个</span>&nbsp;
+				<a id="uc_Paging_firstLbtn" disabled="disabled">第一页</a>
+				<a id="uc_Paging_preLbtn" disabled="disabled">上一页</a>
+				<a id="uc_Paging_nextLbtn" disabled="disabled">下一页</a>
+				<a id="uc_Paging_lastLbtn" disabled="disabled">最后一页</a>
+				<select name="uc_Paging$ddlPage" onchange="return ucPagingGoToPage(this.value);setTimeout(&#39;__doPostBack(\&#39;uc_Paging$ddlPage\&#39;,\&#39;\&#39;)&#39;, 0)" id="uc_Paging_ddlPage">
+					<option selected="selected" value="1">1</option>
+
+				</select>&nbsp;页
+				<input type="hidden" name="uc_Paging$hdd_Post_Paging" id="uc_Paging_hdd_Post_Paging">
+
+			</div>
+			<input type="submit" name="uc_Paging$btndDataListReload" value="Button" id="uc_Paging_btndDataListReload" style="display:none">
+			<input type="hidden" name="uc_Paging$hdnCurrentPageIndex" id="uc_Paging_hdnCurrentPageIndex" value="1">
+		</div>
+
+		<!-- 内容结束 -->
+	</body>
+
+</html>

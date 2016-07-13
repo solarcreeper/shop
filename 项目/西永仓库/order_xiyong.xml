@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="gb2312"?>
+<actiondata>
+    <action>billfromerptowms</action>
+    <data>
+        <head>
+            <!-- <fbilltype>单据类型</fbilltype>  //默认为2  -->
+            <!-- <faccountno>帐套号</faccountno>  //默认为001 -->
+            <!-- <ferpfromoth></ferpfromoth> //可为空 -->
+            <ferporderbillno >原始订单单号</ferporderbillno>//可以为空
+            <ferpbillno >帐套号.订单单号</ferpbillno> //  不能为空
+            <!-- <fcustno >客户号</fcustno> //不能为空 -->
+            <!-- <fstockinno >erp仓库号</fstockinno> //默认01  -->
+            <!-- <fstockoutno >erp仓库号</fstockoutno> //默认为空 -->
+            <!-- <fbillerno>制单人</fbillerno>//可以为空 -->
+            <!-- <fcheckerno>审核人</fcheckerno>//可以为空 -->
+            <!-- <fbilldate>日期</fbilldate> //格式yyyy-mm-dd hh:nn:ss 不能为空 -->
+            <!-- <fremark>备注(最多50个字)</fremark> //可以为空 -->
+            <!-- <fdischargeplace>虚拟快递单号</fdischargeplace> //出库对接用可以为空 -->
+            <!-- <fdeliverplace>真实快递单号</fdeliverplace> //出库对接用  可以为空 -->
+            <fconsigneekey>收货人</fconsigneekey>//出库对接用  不能为空
+            <!-- <fc_province>收货人省编码</fc_province>//出库对接用  不能为空 -->
+            <!-- <fc_provincename>收货人省名称</fc_provincename>//出库对接用  不能为空 -->
+            <!-- <fc_city>收货人城市编码</fc_city>//出库对接用  不能为空 -->
+            <!-- <fc_cityname>收货人城市名称</fc_cityname>//出库对接用  不能为空 -->
+            <!-- <fc_area>收货人区/县编码</fc_area>//出库对接用  不能为空 -->
+            <!-- <fc_areaname>收货人区县名称</fc_areaname>//出库对接用  不能为空 -->
+            <fnotes>收货人地址</fnotes>//出库对接用   不能为空
+            <!-- <fc_zip>邮编</fc_zip>//出库对接用    不能为空 -->
+            <fc_contact1 >联系人</fc_contact1>//出库对接用  不能为空
+            <fc_phone>联系电话</fc_phone>//出库对接用   不能为空
+            <fhgbarcode>海关通关条码</fhgbarcode>//出库对接用   不能为空
+            <!-- <ftype>是否急单</ftype>  //Y或者N来标识，Y：是，N：否 -->
+            <fmawb>订单总金额</fmawb>  //decimal(15,4)
+            <fhwab>订单总税款金额</fhwab>//decimal(15,4)
+            <!-- <fbjflag>是否保价 </fbjflag>  //Y：是，N:否 -->
+            <!-- <fbjamt>保价金额</fbjamt>//decimal(15,4) -->
+        </head>
+        <detail>
+            <list>
+                <ficno>帐套号.商品编码</ficno> //不能为空
+                <funit>帐套号.单位</funit>     // 默认‘个’        		
+                <fqty>数量</fqty>     //  不能为空
+                <fprice>单价</fprice> // 可以为空
+                <famount>金额</famount> //可以为空
+                <fwareno>指定库位</fwareno> //可以为空
+                <fprodate>指定生产日期</fprodate >// 可以为空
+                <foutdate>指定到期日</foutdate> //可以为空
+                <fblockno>指定批号</fblockno>// 可以为空
+                <fremarkdtail>明细备注</fremarkdtail> //可以为空
+            </list>
+            <list>
+                <ficno>帐套号.商品编码</ficno> //不能为空
+                <funit>帐套号.单位</funit>     // 默认‘个’        		
+                <fqty>数量</fqty>     //  不能为空
+                <fprice>单价</fprice> // 可以为空
+                <famount>金额</famount> //可以为空
+                <fwareno>指定库位</fwareno> //可以为空
+                <fprodate>指定生产日期</fprodate >// 可以为空
+                <foutdate>指定到期日</foutdate> //可以为空
+                <fblockno>指定批号</fblockno>// 可以为空
+                <fremarkdtail>明细备注</fremarkdtail> //可以为空
+            </list>
+        </detail>
+    </data>
+</actiondata>

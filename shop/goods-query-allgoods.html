@@ -1,0 +1,158 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="css/jquery.dataTables.min.css"/>
+    <link rel="stylesheet" type="text/css" href="table_style.css"/>
+
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+
+    <script type="text/javascript" src="scripts/resources.js"></script>
+    <script type="text/javascript" src="scripts/fundamental_tables.js"></script>
+    <script>
+        LC_SOURCE = "GOODS";
+
+        function initTable() {
+            var table = $('#example').DataTable({
+                "language": {
+                    "url": "table_ui_cn.json"
+                },
+                "columnDefs": [{
+                    "targets": "_all",
+                    "className": "dt-center"
+                }],
+                "columns": [
+                    {   "data": "PICTURE",
+                        "width": "220px",
+                        "render": function ( data, type, full, meta ) {
+                            return '<img class="img_preview_in_detail" src="'+data+'"></img>';
+                        }
+                    },
+                    {   "data": "SKU" },
+                    {   "data": "GOODS_NAME" },
+                    {   "data": "GOODS_SPEC" },
+                    {   "data": "PRICE",
+                        "render": function(data, type, full, meta) {
+                            return (data * 1).toFixed(2);
+                        }
+                    },
+                    {   "data": "USER_PRICE" },
+                    {   "data": "TOTAL_STOCK" },
+                    {   "data": "AVAILABLE_STOCK" },
+                    {   //edit stock
+                        "orderable": false,
+                        "data": null,
+                        "defaultContent" :'<button>修改</button>',
+                        "visible": isAdmin()
+                    }
+
+                ],
+                "processing": true,
+                "serverSide": true,
+                "ajax": {
+                    "url":  URL_GET_GOODS_QUERY_ALLGOODS_TABLE,
+                    "dataSrc": showResponseInTable
+                }
+            });
+
+            // edit stock button implements
+            $('#example tbody').on( 'click', 'button', function () {
+                var INDEX_STOCK_ALL = 6;
+                var INDEX_STOCK_AVAILABLE = 7;
+                var action = $(this).text();
+                var action_cell = $(this).parent();
+                var tr_stock_all = $(this).parents('tr').children('td')[INDEX_STOCK_ALL];
+                var tr_stock_available = $(this).parents('tr').children('td')[INDEX_STOCK_AVAILABLE];
+                var data = table.row($(this).parents('tr')).data();
+                var edit_button = $('<button>').text("修改");
+                var submit_button = $('<button>').text("提交");
+                var cancel_button = $('<button>').text("取消");
+                switch (action) {
+                    case "修改":
+                        action_cell.empty();
+                        action_cell.append(submit_button, cancel_button);
+                        init_edit(tr_stock_all);
+                        init_edit(tr_stock_available);
+                        break;
+                    case "取消":
+                        action_cell.empty();
+                        action_cell.append(edit_button);
+                        cancel_edit(tr_stock_all);
+                        cancel_edit(tr_stock_available);
+                        break;
+                    case "提交":
+                        action_cell.children('button').attr('disabled', 'true');
+                        //submit
+                        var sku = data["SKU"];
+                        var stock_all = $(tr_stock_all).children().val();
+                        var stock_available = $(tr_stock_available).children().val();
+                        $.get(URL_GET_GOODS_QUERY_ALLGOODS_ACT_STOCK, {
+                            "SKU": sku,
+                            "TOTAL_STOCK": stock_all,
+                            "AVAILABLE_STOCK": stock_available
+                        }, function(data, textStatus) {
+                            data = JSON.parse(data);
+                            showResponseInGET(data);
+                            //if succeed, reload
+                            if (data.error_code == '1000') table.ajax.reload();
+                            //if fail, prompt and unlock
+                            else action_cell.children('button').removeAttr('disabled');
+                        })
+                        break;
+                    default:
+                };
+
+                //hide original data & create edit box, accept a DOM as arg
+                function init_edit(target) {
+                    target = $(target); //transfer to jQuery object
+                    var original = target.text();
+                    target.empty();
+                    $('<input />', {
+                        type: "text",
+                        style: "width:50px",
+                        value: original,
+                        original: original
+                    }).appendTo(target);
+                };
+                //restore..
+                function cancel_edit(target) {
+                    target = $(target); //transfer to jQuery object
+                    var original = target.children().attr('original');
+                    target.text(original);
+                };
+            } );
+        };
+    </script>
+</head>
+<body>
+<div class="maincontentinner1">
+    <div class="subPage">
+
+        <hr />
+    </div>
+    <table id="example" class="display" cellspacing="0" style="overflow-x:scroll">
+	<div class="title">
+            <h3><center><b>商品查询表</b></center></h3>
+         </div>
+        <thead>
+            <tr style="background-color:rgba(114,178,141,0.2)">
+                <th class="title">PICTURE</th>
+                <th class="title">SKU</th>
+                <th class="title">GOODS_NAME</th>
+                <th class="title">GOODS_SPEC</th>
+                <th class="title">PRICE</th>
+                <th class="title">USER_PRICE</th>
+                <th class="title">TOTAL_STOCK</th>
+                <th class="title">AVAILABLE_STOCK</th>
+
+                <th class="title">修改库存</th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+</body>
+</html>

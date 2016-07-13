@@ -1,0 +1,142 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery.dataTables.min.js" type="text/javascript"></script>
+    <script src="scripts/fundamental_tables.js" type="text/javascript"></script>
+    <script type="text/javascript" src="scripts/resources.js"></script>
+    <link rel="stylesheet" href="css/jquery.dataTables.min.css" type="text/css" />
+    <link rel="stylesheet" href="table_style.css" type="text/css" />
+    <script>
+        LC_SOURCE = "CUSTOMS_SIGN";
+        function format(d) {
+            // `d` is the original data object for the row
+            // This array of class defines all content to display in detail panel
+            // the order should be strictly up to the hadbook and stay same with the server
+            // All item should be assigned with a type.
+            // see fundamental_tables.js : disp_format for details
+            var ref = [
+                {name: "ORDER_NO", type: "text"},
+                {name: "ORIGINAL_ORDER_NO", type: "text"},
+                {name: "BILL_INFO_NO", type: "text"},
+                {name: "ESHOP_ENT_CODE", type: "text"},
+                {name: "ESHOP_ENT_NAME", type: "text"},
+                {name: "LOGISTICS_ENT_CODE", type: "text"},
+                {name: "LOGISTICS_ENT_NAME", type: "text"},
+                {name: "RECEIVE_STATUS_CODE", type: "text"},
+                {name: "RECEIVE_DATE", type: "text"},
+                {name: "MEMO", type: "text"},
+
+                {name: "STATUS_CODE", type: "text"},
+                {name: "OP_DATE", type: "text"},
+                {name: "AUDIT_MEMO", type: "text"},
+
+            ]
+            var table = $('<table style="width:100%; border:solid grey 2px;"></table>');
+            var tr;
+            var count = 0;
+            $.each(ref, (function(index, item) {
+                count++;
+                if (index % 2 == 0)
+                    tr = $('<tr></tr>').addClass("detail").appendTo(table);
+                $('<td>').addClass("detail title").text(item.name).appendTo(tr);
+                $('<td>').addClass("detail content").append(disp_format(d[index+1], item.type)).appendTo(tr);
+            }));
+            //process STATUS_CODE
+            if (count % 2 )
+            if (count % 2 !== 0) {
+                $('<td>').appendTo(tr);
+                $('<td>').appendTo(tr);
+            }
+
+            var slider_wrap = $('<div>').addClass('slider').css('display','none')
+                .append(table);
+            return slider_wrap;
+
+        }
+
+        function initTable() {
+            var table = $('#example').DataTable({
+                "language": {
+                    "url": "table_ui_cn.json"
+                },
+                "columnDefs": [{
+                    "targets": "_all",
+                    "className": "dt-center"
+                }],
+                "columns": [
+                    null, //id
+                    // item 1~10
+                    null, null, null, null, null, null, null, null, null, null,
+                    {   //details
+                        "class": 'details-control dt-center',
+                        "orderable": false,
+                        "data": null,
+                        "defaultContent" :'<span class="details-controller"><i class="fa fa-search"></i></span>'
+                    }
+                ],
+                "processing": true,
+                "serverSide": true,
+                "ajax": serverRoot+"/shop_server/order_receive_info_query.php"
+            });
+
+            // Add event listener for opening and closing details
+            $('#example tbody').on('click', 'td.details-control', function () {
+                var tr = $(this).closest('tr');
+                var row = table.row(tr);
+                if (row.child.isShown()) {
+                    // This row is already open - close it
+                    $('div.slider', row.child()).slideUp(200, function() {
+                        row.child.hide();
+                        tr.removeClass('shown');
+                    });
+                }
+                else {
+                    // Open this row
+                    row.child(format(row.data()), 'no-padding').show();
+                    translate_titles();
+                    tr.addClass('shown');
+                    $('div.slider', row.child()).slideDown(100);
+                }
+            });
+        };
+
+    </script>
+</head>
+<body>
+    <div class="subPage">
+        <div class="title">
+            <h1>查询签收信息</h1>
+        </div>
+        <hr />
+    </div>
+    <table id="example" class="display" cellspacing="0" style="overflow-x:scroll">
+        <thead>
+            <tr>
+                <th class="title">序号</th>
+
+                <th class="title">ORDER_NO</th>
+                <th class="title">ORIGINAL_ORDER_NO</th>
+                <th class="title">BILL_INFO_NO</th>
+                <th class="title">ESHOP_ENT_CODE</th>
+                <th class="title">ESHOP_ENT_NAME</th>
+                <th class="title">LOGISTICS_ENT_CODE</th>
+                <th class="title">LOGISTICS_ENT_NAME</th>
+                <th class="title">RECEIVE_STATUS_CODE</th>
+                <th class="title">RECEIVE_DATE</th>
+                <th class="title">MEMO</th>
+
+                <th class="title">详情</th>
+
+
+            </tr>
+        </thead>
+    </table>
+
+    <script>
+
+    </script>
+</body>
+</html>

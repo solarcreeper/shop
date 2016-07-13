@@ -1,0 +1,30 @@
+<DTC_Message>
+    <MessageHead>
+        <MessageType>XXXX</MessageType>
+        <MessageId>XXXXX</MessageId>
+        <ActionType>XXX</ActionType>
+        <MessageTime>XXXX</MessageTime>
+        <SenderId>XXXX</SenderId>
+        <ReceiverId>XXXX</ReceiverId>
+        <UserNo>XXXXX</UserNo>
+        <Password>XXXXX</Password>
+    </MessageHead>
+    <MessageBody>
+        <DTCFlow>
+            <SKU_INFO>
+                <ESHOP_ENT_CODE>XXXXXX</ESHOP_ENT_CODE>
+                <ESHOP_ENT_NAME>XXXXXX</ESHOP_ENT_NAME>
+                <SKU>XXXXX</SKU>
+                <GOODS_NAME>XXX</GOODS_NAME>
+                <GOODS_SPEC>900g</GOODS_SPEC>
+                <DECLARE_UNIT>XXX</DECLARE_UNIT>
+                <POST_TAX_NO>XXXX</POST_TAX_NO>
+                <LEGAL_UNIT>XXX</LEGAL_UNIT>
+                <CONV_LEGAL_UNIT_NUM>XXXXXX</CONV_LEGAL_UNIT_NUM>
+                <HS_CODE>XXXXXX</HS_CODE>
+                <IN_AREA_UNIT>XXX</IN_AREA_UNIT>
+                <CONV_IN_AREA_UNIT_NUM>XXX</CONV_IN_AREA_UNIT_NUM>
+            </SKU_INFO>
+        </DTCFlow>
+    </MessageBody>
+</DTC_Message>

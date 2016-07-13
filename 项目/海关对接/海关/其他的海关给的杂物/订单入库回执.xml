@@ -1,0 +1,32 @@
+﻿<DTC_Message>
+  <MessageHead>
+    <MessageType>MES_ASK_INFO</MessageType>
+    <MessageId>c458b468-3497-4dd5-ae33-abad620c15d4</MessageId>
+    <MessageTime>2014-07-04T19:14:32</MessageTime>
+    <SenderId>CQITC</SenderId>
+    <SenderAddress />
+    <ReceiverId>50052602BE</ReceiverId>
+    <ReceiverAddress />
+    <PlatFormNo />
+    <CustomCode />
+    <SeqNo>527a9390-a00a-4d99-ba57-be3de9f73fd2</SeqNo>
+    <Note />
+  </MessageHead>
+  <MessageBody>
+    <DTCFlow>
+      <MES_ASK_INFO>
+        <MESSAGE_TYPE>ORDER_INFO</MESSAGE_TYPE>
+        <WORK_NO>100001659</WORK_NO>
+        <CREATED_NO>a5170499557543d29762326b396da8a1</CREATED_NO>
+        <OP_DATE>2014-07-04T19:14:32</OP_DATE>
+        <SUCCESS>1</SUCCESS>
+        <MEMO>订单入库成功</MEMO>
+        <UDF1 />
+        <UDF2 />
+        <UDF3 />
+        <UDF4 />
+        <UDF5 />
+      </MES_ASK_INFO>
+    </DTCFlow>
+  </MessageBody>
+</DTC_Message>

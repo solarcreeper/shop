@@ -1,0 +1,146 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="form_style.css"/>
+    <link rel="stylesheet" type="text/css" href="table_style.css"/>
+    <link rel="stylesheet" type="text/css" href="css/jquery.dataTables.min.css"/>
+
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="js/jquery.form.min.js"></script>
+    <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+
+    <script type="text/javascript" src="scripts/resources.js"></script>
+    <script type="text/javascript" src="scripts/fundamental_tables.js"></script>
+    <script type="text/javascript" src="scripts/fundamental_forms.js"></script>
+    <script type="text/javascript">
+
+        LC_SOURCE = "GOODS";
+
+        var table_head;
+
+        function custom_validation() {
+            var pass = true;
+            //alert('Hello');
+            return pass;
+        }
+
+        function formSuccessCallback() {
+            table_head.ajax.reload();
+            $('#loading_prompt').text('从列表中选取一项来创建').css('display','block');
+            $('#myForm').css('display','none');
+        }
+
+        function initForm() {
+            $('#myForm').attr('action', URL_POST_FORM_GOODS_ADD_NORMAL_SYNC)
+        }
+
+        function initTable() {
+            table_head = $('#order_head').DataTable({
+                "language": {
+                    "url": "table_ui_cn.json"
+                },
+                "columnDefs": [{
+                    "targets": "_all",
+                    "className": "dt-center"
+                }],
+                "columns": [
+                    {   "data": "INDEX" },
+                    {   "data": "PICTURE",
+                        "width": "220px",
+                        "render": function ( data, type, full, meta ) {
+                            return '<img class="img_preview_in_detail" src="'+data+'"></img>';
+                        }
+                    },
+                    {   "data": "SKU" },
+                    {   "data": "GOODS_NAME" },
+                    {   "data": "PRICE",
+                        "render": function(data, type, full, meta) {
+                            return (data * 1).toFixed(2);
+                        }
+                    },
+                    {   "data": "TOTAL_STOCK" },
+                ],
+                "processing": true,
+                "serverSide": true,
+                "ajax": URL_GET_GOODS_ADD_NORMAL_SYNC_TABLE
+            });
+
+            //Add event listener for reload order details
+            $('#order_head tbody').on('click', 'tr', function () {
+                var row = table_head.row($(this));
+                var data = row.data();
+                if (data.SKU == "") return;
+                //Load and auto fill data to form below.
+                //Step 1: reset form
+                goodCount = 0;
+                $('#order_details').empty();
+                $('#myForm').css('display','none').resetForm();
+                $('#loading_prompt').text('正在获取数据...').css('display','block');
+                //Step 2: fill general data
+                $('input[name]').each(function () {
+                    var name = $(this).attr('name');
+                    if (eval('data.'+name)) $(this).val(eval('data.'+name));
+                });
+                //Step 3: solve img data (for preview only)
+                $('input.image').each(function () {
+                    var target = $(this).attr('target');
+                    $('#'+target+'_preview').attr('src', $('#'+target+'_input').val());
+                })
+                //Step 3: display
+                fixClientInfo();
+                $('#loading_prompt').css('display','none');
+                $('#myForm').css('display','block');
+            });
+        };
+
+    </script>
+
+
+
+</head>
+<body>
+<div class="maincontentinner1">
+    <div class="subPage">
+
+        <hr />
+    </div>
+    <table id="order_head" class="display" cellspacing="0" style="overflow-x:scroll">
+	  <div class="title">
+            <h3><center><b>同步商城商品信息表</b></center></h3>
+         </div>
+        <thead>
+            <tr style="background-color:rgba(114,178,141,0.2)">
+                <th class="title">序号</th>
+
+                <th class="title">PICTURE</th>
+                <th class="title">SKU</th>
+                <th class="title">GOODS_NAME</th>
+                <th class="title">PRICE</th>
+                <th class="title">TOTAL_STOCK</th>
+            </tr>
+        </thead>
+    </table>
+    <div id="loading_prompt">从列表中选取一项来创建</div>
+    <form id="myForm" method="post" style="display:none">
+        <div style="text-align:center">
+            <div class="inner_form_wrapper">
+                <input type="text" name="SKU" class="mandatory" maxlength="20" />
+                <input type="text" name="GOODS_NAME" class="mandatory" maxlength="100" />
+                <input type="text" name="GOODS_SPEC" class="mandatory" maxlength="600" />
+                <input type="text" name="PRICE" class="mandatory" maxlength="30" />
+                <input type="text" name="TOTAL_STOCK" class="mandatory" maxlength="30" />
+                <input class="image" accept="image/*" type="file" target="PICTURE" />
+            </div>
+            <input class="button" type="submit" id="test" value="提交" />
+            <div id="output1" style="display:none"></div>
+        </div>
+    </form>
+    <script>
+        //addGood()
+    </script>
+</div>
+</body>
+</html>

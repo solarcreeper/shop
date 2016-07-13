@@ -1,0 +1,239 @@
+﻿<!doctype html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>经纬通</title>
+    <link rel="stylesheet" href="css/style.default.css" type="text/css" />
+    <link rel="stylesheet" href="font-awesome-4.4.0/css/font-awesome.min.css">
+
+	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="js/jquery.uniform.min.js"></script>
+
+    <script type="text/javascript" src="scripts/resources.js"></script>
+
+    <script type="text/javascript" src="js/head-panel-style.js"></script>
+    <script type="text/javascript" src="js/custom.js" ></script>
+    <script type="text/javascript" src="scripts/sidebar.js"></script>
+
+    <script src="js1/vivo-common.js"></script>
+    <script src="js1/vivo-high.js"></script>
+    <script src="layer/layer.js"></script>
+    
+	<script type="text/javascript" src="js/highcharts.js" ></script>
+	<script type="text/javascript" src="js/exporting.js" ></script>
+    <link href="css1/highlight.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="js/select4.js" ></script>
+	<link rel="stylesheet" href="css/select4.css" />
+
+    <style type="text/css">
+        #leftmenuOperate a:hover {background-color: #336666;}
+
+        #tb a:hover {color: #163f71;}
+
+        body {
+            /*font-family: 微软雅黑;*/
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .selectOne {cursor: pointer;}
+    </style>
+
+</head>
+
+<body class="home">
+
+<div class="mainwrapper" style="margin-bottom:0; position:relative">
+
+    <div class="header" id="header"></div>
+
+    <div class="leftpanel" style="margin-top:0">
+
+        <div class="leftmenu" id="leftmenuOperate">
+            <ul class="nav nav-tabs nav-stacked">
+
+
+                <li class="select" id="leftPanelMenu">
+                    <a class="select selectOne" href="index.html"><i class="fa fa-home"></i>&nbsp;首页</a>
+                </li>
+
+                <li class="dropdown select">
+                    <a class="select" href="#goods"><i class="fa fa-tasks"></i>&nbsp;商品管理</a>
+                    <ul style="display: none">
+
+                        <li class="dropdown select">
+                            <a class="select" href="#goods-add">添加商品</a>
+                            <ul>
+                                <li><a class="selectOne" href="#goods-add-import" data-toggle="tab">保税港商品</a></li>
+                                <li class="dropdown select">
+                                    <a class="select" href="#goods-add-normal">普通商品</a>
+                                    <ul>
+                                        <li><a class="selectOne" href="#goods-add-normal-manual" data-toggle="tab">手动添加</a></li>
+                                        <li><a class="selectOne" href="#goods-add-normal-excel" data-toggle="tab">导入Excel</a></li>
+                                        <li><a class="selectOne" href="#goods-add-normal-sync" data-toggle="tab">同步商城</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="dropdown select">
+                            <a class="select" href="#goods-purchase">采购商品</a>
+                            <ul>
+                                <li><a class="selectOne" href="#goods-purchase" data-toggle="tab">采购商品</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="dropdown select">
+                            <a class="select" href="#goods-query">查看商品</a>
+                            <ul>
+                                <li><a class="selectOne" href="#goods-query-record" data-toggle="tab">备案查询</a></li>
+                                <li><a class="selectOne" href="#goods-query-purchase" data-toggle="tab">采购单查询</a></li>
+                                <li><a class="selectOne" href="#goods-query-allgoods" data-toggle="tab">商品查询</a></li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </li>
+
+                <li class="dropdown select">
+                    <a class="select" href="#order"><i class="fa fa-file-text"></i>&nbsp;订单管理</a>
+                    <ul style="display: none">
+                        <li class="dropdown select">
+                            <a class="select" href="#order-new">添加订单</a>
+                            <ul>
+                                <li><a class="selectOne" href="#order-new-manual" data-toggle="tab">手动添加</a></li>
+                                <li><a class="selectOne" href="#order-new-excel" data-toggle="tab">导入Excel</a></li>
+                                <li><a class="selectOne" href="#order-new-sync" data-toggle="tab">同步商城</a></li>
+                            </ul>
+                        <li class="dropdown select">
+                            <a class="select" href="#order-query">查询订单</a>
+                            <ul>
+                                <li><a class="selectOne" href="#order-query" data-toggle="tab">查询订单</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="dropdown select">
+                    <a class="select" href="#retailer"><i class="fa fa-group"></i>&nbsp;分销商管理</a>
+                    <ul style="display: none">
+					    <li class="dropdown select">
+                            <a class="select" href="#order-query">新建分销商</a>
+                            <ul>
+						       <li><a class="selectOne" href="#add_Fxs_User" data-toggle="tab">新建分销商</a></li>
+						    </ul>
+						</li>
+						<li class="dropdown select">
+                            <a class="select" href="#order-query">管理分销商</a>
+                            <ul>
+						       <li><a class="selectOne" href="#fxs_User_Manage" data-toggle="tab">管理分销商</a></li>
+						    </ul>
+						</li>                
+						<li class="dropdown select">
+							<a class="select" href="#retailer">分销商分析</a>
+							<ul style="display: none">
+								<li><a class="selectOne" href="#fxs_Order_Pay_Tj" data-toggle="tab">销售金额分析</a></li>
+								<li><a class="selectOne" href="#fxs_Order_Rate_Tj" data-toggle="tab">活跃度分析</a></li>
+							</ul>
+						</li>
+                    </ul>
+                </li>
+
+                <li class="dropdown select">
+                    <a class="select" href="#bindmall"><i class="fa fa-chain-broken"></i>&nbsp;绑定前端商城</a>
+                    <ul style="display: none">
+						    <li><a class="selectOne" href="#binding_shop" data-toggle="tab">绑定前端商城</a></li>  
+                    </ul>
+                </li>
+
+
+            </ul>
+        </div><!--leftmenu-->
+        <script>setMenuBehavier()</script>
+    </div><!-- leftpanel -->
+
+    <div class="rightpanel">
+        <div id="userOperateBar"> </div>
+
+        <div class="maincontent">
+
+            <div class="maincontentinner">
+			
+			    <div id="vivo-wrap">
+                   <div id="vivo-contain">
+                     <div class="focus-gallery"  style="margin-left: 0px;margin-right: 0px">
+					  <ul class="cl">
+                         
+						<li class="high-imageSearch3">
+						  <div class="high-box">
+							<div class="figure">
+							  <div class="screen"><img src="images1/h-imagesearch3-sc1.jpg" width="1310" height="299" /></div>
+							  <div class="mobile"><img src="images1/h-imagesearch3-mob.png" width="700" height="380" /></div>
+							</div>
+							<div class="high-title">
+							  <h2><img src="images1/h-imagesearch3-logo.png" width="830" height="390" /></h2>
+							</div>
+						  </div>
+						 </li>
+
+						<li class="high-x5">
+						  <div class="high-box">
+							<div class="figure">
+							<b class="mob1"><img src="images1/h-x5-f1.png" alt="X5" width="700" height="680" /></b>
+							<b class="mob4"><img src="images1/h-x5-f4.png" alt="X5" width="710" height="680" /></b>
+						  </div>
+							<div class="high-title">
+							  <h2><img src="images1/h-x5-t1.png" width="366" height="107" /></h2>
+							  <h3><img src="images1/h-x5-t2.png" width="366" height="69" /></h3>
+							</div>
+						  </div>
+						</li>
+
+						<li class="high-x3v">
+						  <div class="high-box">
+							<div class="figure"><img src="images1/h-x3v-figure.png" width="532" height="566" /></div>
+							<div class="high-title">
+							  <h2><img src="images1/h-x3v-title1.png" width="459" height="95" /></h2>
+							  <h3><img src="images1/h-x3v-title2.png" width="459" height="95" /></h3>
+							</div>
+						  </div>
+						</li>
+
+
+						<li class="high-xshotnew">
+						  <div class="high-box">
+								<em class="mask"><img src="images1/h-xshot-mask.png" width="560" height="426" /></em>
+								<div class="high-title">
+									<h2><img src="images1/h-xshot-t1.png" width="446" height="146" /></h2>
+								</div>
+						  </div>
+						</li>
+                       
+					  </ul>
+                      <div class="switch-high">
+					  </div>
+                     </div>
+                   </div>
+                </div>
+			</div>
+        </div><!--maincontent-->
+        <div class="footer">
+				<div class="footer-left">
+					<span>&nbsp;&nbsp;© 2014. Team Continue, Chongqing University. All Rights Reserved.</span>
+				</div>
+            </div><!--footer-->
+    </div><!--rightpanel-->
+
+    <script>
+        //load index for first time
+        //jQuery('.maincontentinner').load("bbq.html", function () {  });
+
+    </script>
+
+    </div><!--mainwrapper-->
+</body>
+</html>

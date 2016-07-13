@@ -1,0 +1,28 @@
+﻿<DTC_Message>
+  <MessageHead>
+    <MessageType>ORDER_SET_TRANSPORT_NO</MessageType>
+    <MessageId>48555a99-4a59-4a8d-b548-3bc3ff714594</MessageId>
+    <ActionType>1</ActionType>
+    <MessageTime>2014-05-24 12:11:00</MessageTime>
+    <SenderId>50052602BE</SenderId>
+    <ReceiverId>CQITC</ReceiverId>
+    <SenderAddress />
+    <ReceiverAddress />
+    <PlatFormNo />
+    <CustomCode />
+    <SeqNo />
+    <Note />
+    <UserNo>50052602BH</UserNo>
+    <Password>d3b08c30c9d84fa02e6b3607b3630ce5</Password>
+  </MessageHead>
+  <MessageBody>
+    <DTCFlow>
+      <ORDER_SET_TRANSPORT_NO>
+        <ESHOP_ENT_CODE>50052602BE</ESHOP_ENT_CODE>
+        <ESHOP_ENT_NAME>重庆融彩科技有限公司</ESHOP_ENT_NAME>
+        <ORIGINAL_ORDER_NO>100000074</ORIGINAL_ORDER_NO>
+        <TRANSPORT_BILL_NO>098765</TRANSPORT_BILL_NO>
+      </ORDER_SET_TRANSPORT_NO>
+    </DTCFlow>
+  </MessageBody>
+</DTC_Message>

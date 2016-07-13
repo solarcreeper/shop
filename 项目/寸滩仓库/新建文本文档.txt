@@ -1,0 +1,7 @@
+1.orderStaus(订单状态) 又一城为给出所有状态，寸滩仓库的文档给出了所有状态，如何转换？(目前我全部写成了WAIT_SELLER_SEND_GOODS等待发货状态)
+
+2.logisticsNumber(物流单号) 留空表示让OMS系统分配，留空是指直接不发送这个字段还是logisticsNumber=""，实例中给了具体值是怎么回事？（目前写的是logisticsNumber=""）
+
+3.invoiceName（发票抬头）文档要求写成海关2.0+单号，实例给的空值，该怎么写？
+
+4.outerSkuId(外部sku)仓库系统反馈给你的商品编码，这个我要找谁拿？

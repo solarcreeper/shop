@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<script type="text/javascript" src="js/jquery.js" ></script>
+		<script type="text/javascript" src="js/jquery.dataTables.min.js" ></script>
+		<script type="text/javascript" src="js/select4.js" ></script>
+		<script src="js/layer/layer.js" type="text/javascript"></script>
+		<script type="text/javascript" src="js/layer/extend/layer.ext.js" ></script>
+		<link rel="stylesheet" href="js/layer/skin/layer.css" />
+		<link rel="stylesheet" href="css/select4.css" />
+		<link rel="stylesheet" href="css/jquery.dataTables.min.css" />
+		<title></title>
+		<style>
+			.delete{
+				width: 10px;
+			}
+			.delete:hover{
+				cursor: pointer;
+			}
+			.span_goods_name:hover{
+				cursor: pointer;
+			}
+		</style>
+		<script>
+			var curr_username = $(window.parent.document.getElementById("curr_username")).text();
+			var default_url = "../shop_server/fxs/fxs_user_manage.php";
+			$(document).ready(function(){
+				$("#curr_goods_list").dataTable({
+					"ajax" : default_url + "?func_type=curr_goods_list&curr_username=" + curr_username,
+					"info": false,
+					"paging": true,
+					"ordering": false,
+					"searching": false
+				});
+				
+				$("#curr_goods_list").on("click", ".span_goods_name", function(){
+					var sku = $(this).parent("td").find(".delete").prop("alt");
+					var post_data = "func_type=get_goods_price&sku="+sku+"&username="+curr_username;
+					$.ajax({
+						type:"post",
+						url:default_url,
+						async:true,
+						dataType:"json",
+						data:post_data,
+						success:function(result, status, xhr){
+							layer.prompt({
+							    title: '请修改商品价格',
+							    value: result.price,
+							    formType: 0
+							}, function(goods_price){
+								var post_data = "func_type=change_price&goods_price="+goods_price+"&sku="+sku+"&username="+curr_username;
+								$.ajax({
+									type:"post",
+									url:default_url,
+									dataType: "json",
+									async:true,
+									data: post_data,
+									success: function(result){
+										if(result.status == "success"){
+											layer.msg('修改成功！');
+										}else{
+											layer.msg('修改失败！');
+										}
+									},
+									error: function(xhr){
+										alert(xhr.responseText);
+									}
+								});
+							});
+						},
+						error:function(xhr){
+							alert(xhr.responseText);
+						}
+					});
+				});
+				
+				$("#curr_goods_list").on("click", ".delete", function(){
+					var confirm_delete = confirm("确认删除？");
+					if(confirm_delete){
+						var sku = $(this).prop("alt");
+						var post_data = "func_type=delete_user_pro&username=" + curr_username + "&sku=" + sku;
+						$.ajax({
+							type:"post",
+							dataType: "json",
+							url:default_url,
+							data: post_data,
+							async:true,
+							success:function(result){
+								alert(result.status);
+								location.reload();
+							},
+							error:function(xhr){
+								alert(xhr.responseText);
+							}
+						});
+					}
+				});
+				
+			    $("#add_goods").select4({"ajax_url": default_url, "func_type" : "add_goods"});
+			    
+			    $("#btn_add_goods").click(function(){
+			    	var post_data = "func_type=btn_add_goods" + "&username=" + curr_username + "&sku_id=" + $("#add_goods").prop("name");
+			    	console.log(post_data);
+			    	$.ajax({
+			    		type:"post",
+			    		url:default_url,
+			    		async:true,
+			    		dataType:"json",
+			    		data:post_data,
+			    		success:function(result, status, xhr){
+			    			alert(result.status);
+			    			location.reload();
+			    		},
+			    		error:function(xhr){
+			    			alert("fail!");
+			    			console.log(xhr.responseText);
+			    		}
+			    	});
+			    });
+			});
+		</script>
+	</head>
+	<body>
+		<h2>当前商品：</h2>
+		<table id="curr_goods_list">
+			<thead>
+				<tr>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+				</tr>
+			</thead>
+			<tfoot>
+				<tr>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th></th>
+				</tr>
+			</tfoot>
+		</table>
+		<br  />
+		<h2>添加商品:</h2>
+		<input name="sku" type="text" id="add_goods" autocomplete="off"><br />
+		<br />
+		<input type="button"  id="btn_add_goods" value="添加" />
+	</body>
+</html>

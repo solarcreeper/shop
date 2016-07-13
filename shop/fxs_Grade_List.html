@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title></title>
+		<meta charset="utf-8" />
+		<script src="js/jquery.js"></script>
+		<script src="js/jquery.dataTables.min.js" type="text/javascript"></script>
+		<script type="text/javascript" src="scripts/resources.js"></script>
+		<script src="scripts/fundamental_tables.js" type="text/javascript"></script>
+		<link rel="stylesheet" href="css/jquery.dataTables.min.css" type="text/css" />
+		<link rel="stylesheet" href="table_style.css" type="text/css" />
+		<style>
+			input,
+			label {
+				display: inline;
+				margin-right: 10px;
+			}
+		</style>
+		<script>
+			$(document).ready(function() {
+				$("tbody tr").css({
+					"font-weight": "normal"
+				});
+			})
+		</script>
+	</head>
+
+	<body>
+		<div class="subPage">
+			<div class="title">
+				<h1>等级列表</h1>
+			</div>
+			<hr />
+		</div>
+		<!-- 内容开始 -->
+		<span id="lbl_No_Record"></span>
+		<table style="text-align: center;" width="100%" bordercolor="#ddd" border="1" cellspacing="0" cellpadding="0">
+			<thead>
+				<tr class="Main_List_Table_Tr1">
+					<td width="8%">选择</td>
+					<td width="15%">等级名称</td>
+					<td width="25%">折扣类型</td>
+					<td width="18%">具体折扣(折)</td>
+					<td width="18%">添加时间</td>
+					<td>操作</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr onmouseover="this.className=&#39;Main_List_Table_Tr_Over&#39;" onmouseout="this.className=&#39;Main_List_Table_Tr_Out&#39;">
+					<td>
+						<input type="checkbox" name="G_Id" value="1">
+					</td>
+					<td>A</td>
+					<td>市场价折扣</td>
+					<td>10.00</td>
+					<td>2015-10-19 16:25:32</td>
+					<td><a href="http://121.41.179.119/Nuosby/Fxy_Admin/edit_Fxs_Grade.aspx?G_Id=1">修改</a> |
+						<a onclick="return confirm(&#39;确定要删除吗？&#39;);" id="rpt_User_List_ctl00_lbtn_Del" href="javascript:__doPostBack('rpt_User_List$ctl00$lbtn_Del','')">删除</a></td>
+				</tr>
+
+			</tbody>
+		</table>
+		<div class="padding_Top10">
+			<label for="sel_All" style="cursor:pointer">
+				<input type="checkbox" name="sel_All" id="sel_All" onclick="selectAll(&#39;sel_All&#39;, &#39;G_Id&#39;);">全选/反选</label>&nbsp;&nbsp;
+		</div>
+
+		<div style="padding-top:10px; padding-bottom:10px; text-align:right;">
+
+			<script language="javascript" type="text/javascript">
+				function enterPageNo() {
+					try {
+						var obje = event || window.event || arguments.callee.caller.arguments[0];
+						if (obje.keyCode == 13) {
+							alert(btnSetPageSize());
+						}
+					} catch (e) {}
+				}
+
+				function btnSetPageSize() {
+					$_Id("uc_Paging_btnSetPageSize").click();
+					return "设置成功!";
+				}
+
+				function dataListReload() {
+					$_Id('uc_Paging_hdd_Post_Paging').value = 'Yes';
+					$('#uc_Paging_btndDataListReload').click();
+				}
+
+				function ucPagingGoToPage(index) {
+					$_Id('uc_Paging_hdnCurrentPageIndex').value = index;
+					$_Id('uc_Paging_hdd_Post_Paging').value = 'Yes';
+					$('#uc_Paging_btndDataListReload').click();
+					return false;
+				}
+			</script>
+			<div id="uc_Paging_pl_Post_Paging">
+
+				<!-- POST分页 -->
+
+				<span id="uc_Paging_lbl_Page">每页15个，本页1个，共1个</span>&nbsp;
+				<a id="uc_Paging_firstLbtn" disabled="disabled">第一页</a>
+				<a id="uc_Paging_preLbtn" disabled="disabled">上一页</a>
+				<a id="uc_Paging_nextLbtn" disabled="disabled">下一页</a>
+				<a id="uc_Paging_lastLbtn" disabled="disabled">最后一页</a>
+				<select name="uc_Paging$ddlPage" onchange="return ucPagingGoToPage(this.value);setTimeout(&#39;__doPostBack(\&#39;uc_Paging$ddlPage\&#39;,\&#39;\&#39;)&#39;, 0)" id="uc_Paging_ddlPage">
+					<option selected="selected" value="1">1</option>
+
+				</select>&nbsp;页
+				<input type="hidden" name="uc_Paging$hdd_Post_Paging" id="uc_Paging_hdd_Post_Paging">
+
+			</div>
+			<input type="submit" name="uc_Paging$btndDataListReload" value="Button" id="uc_Paging_btndDataListReload" style="display:none">
+			<input type="hidden" name="uc_Paging$hdnCurrentPageIndex" id="uc_Paging_hdnCurrentPageIndex" value="1">
+		</div>
+
+		<!-- 内容结束 -->
+
+	</body>

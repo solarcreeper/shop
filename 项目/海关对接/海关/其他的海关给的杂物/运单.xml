@@ -1,0 +1,37 @@
+﻿<DTC_Message>
+  <MessageHead>
+    <MessageType>BILL_INFO</MessageType>
+    <MessageId>8ed508c9-0ed8-4e48-b1a3-dc367ab5f209</MessageId>
+    <MessageTime>2015-01-26T10:45:32</MessageTime>
+    <SenderId>TEST102015</SenderId>
+    <SenderAddress />
+    <ReceiverId>CQITC</ReceiverId>
+    <ReceiverAddress />
+    <PlatFormNo />
+    <CustomCode />
+    <SeqNo>738b526ff10642ffb448dd07a12f32cc</SeqNo>
+    <Note />
+  </MessageHead>
+  <MessageBody>
+    <DTCFlow>
+      <BILL_INFO>
+        <ORIGINAL_ORDER_NO>2014061721462897</ORIGINAL_ORDER_NO>
+        <BIZ_TYPE_CODE>I20</BIZ_TYPE_CODE>
+        <BIZ_TYPE_NAME>网购保税进口</BIZ_TYPE_NAME>
+        <TRANSPORT_BILL_NO>358052350998</TRANSPORT_BILL_NO>
+        <ESHOP_ENT_CODE>5005210033</ESHOP_ENT_CODE>
+        <ESHOP_ENT_NAME>重庆保税港区进出口商品贸易有限公司</ESHOP_ENT_NAME>
+        <CUSTOMS_CODE>8012</CUSTOMS_CODE>
+        <CUSTOMS_NAME>重庆保税</CUSTOMS_NAME>
+        <LOGISTICS_ENT_CODE>50052602BE</LOGISTICS_ENT_CODE>
+        <LOGISTICS_ENT_NAME>重庆商社电子商务有限公司</LOGISTICS_ENT_NAME>
+        <QTY>1</QTY>
+        <RECEIVER_ID_NO>510824198605234258</RECEIVER_ID_NO>
+        <RECEIVER_NAME>陈建平</RECEIVER_NAME>
+        <RECEIVER_ADDRESS>重庆重庆瑞天路156号重庆天地B栋5楼</RECEIVER_ADDRESS>
+        <RECEIVER_TEL>13668086735</RECEIVER_TEL>        
+        <MEMO />        
+      </BILL_INFO>
+    </DTCFlow>
+  </MessageBody>
+</DTC_Message>

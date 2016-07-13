@@ -1,0 +1,50 @@
+﻿<DTC_Message>
+    <MessageHead>
+        <MessageType>ORDER_INFO</MessageType>
+        <MessageId>20150726103536UWYFKPXPGT</MessageId>
+        <ActionType>1</ActionType>
+        <MessageTime>2015-07-26 10:35:36</MessageTime>
+        <SenderId>dqiang2015</SenderId>
+        <ReceiverId>CQITC</ReceiverId>
+        <SenderAddress />
+        <ReceiverAddress />
+        <PlatFormNo />
+        <CustomCode />
+        <SeqNo />
+        <Note />
+        <UserNo>dqiang2015</UserNo>
+        <Password>E26999B2AEFBA14BB51376264409287C</Password>
+    </MessageHead>
+    <MessageBody>
+        <DTCFlow>
+            <ORDER_HEAD>
+                <CUSTOMS_CODE>8013</CUSTOMS_CODE>
+                <BIZ_TYPE_CODE>I20</BIZ_TYPE_CODE>
+                <ORIGINAL_ORDER_NO>2015062494202</ORIGINAL_ORDER_NO>
+                <ESHOP_ENT_CODE>dqiang2015</ESHOP_ENT_CODE>
+                <ESHOP_ENT_NAME>重庆点趣国际贸易有限公司</ESHOP_ENT_NAME>
+                <DESP_ARRI_COUNTRY_CODE>309</DESP_ARRI_COUNTRY_CODE>
+                <SHIP_TOOL_CODE>5</SHIP_TOOL_CODE>
+                <RECEIVER_ID_NO>50022119920612153X</RECEIVER_ID_NO>
+                <RECEIVER_NAME>刘俊强</RECEIVER_NAME>
+                <RECEIVER_ADDRESS>重庆邮电大学29栋</RECEIVER_ADDRESS>
+                <RECEIVER_TEL>18523148953</RECEIVER_TEL>
+                <GOODS_FEE>119.00</GOODS_FEE>
+                <TAX_FEE>0</TAX_FEE>
+                <GROSS_WEIGHT>0.6</GROSS_WEIGHT>
+                <PROXY_ENT_CODE />
+                <PROXY_ENT_NAME />
+                <SORTLINE_ID>SORTLINE02</SORTLINE_ID>
+                <ORDER_DETAIL>
+                    <SKU>dqiang2015000017</SKU>
+                    <GOODS_SPEC>日本原装进口大王纸尿裤维E系列M68片尿不湿透气薄</GOODS_SPEC>
+                    <CURRENCY_CODE>142</CURRENCY_CODE>
+                    <PRICE>119.00</PRICE>
+                    <QTY>1</QTY>
+                    <GOODS_FEE>119.00</GOODS_FEE>
+                    <TAX_FEE>0</TAX_FEE>
+                </ORDER_DETAIL>
+            </ORDER_HEAD>
+        </DTCFlow>
+    </MessageBody>
+</DTC_Message>

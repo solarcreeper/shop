@@ -1,0 +1,27 @@
+﻿<DTC_Message>
+  <MessageHead>
+    <MessageType>PAYMENT_INFO_FB</MessageType>
+    <MessageId>27267899-0e9a-487f-b4ce-56725667ecd7</MessageId>
+    <MessageTime>2014-07-06T23:58:42</MessageTime>
+    <SenderId>CQITC</SenderId>
+    <SenderAddress />
+    <ReceiverId>50052602BE</ReceiverId>
+    <ReceiverAddress />
+    <PlatFormNo />
+    <CustomCode />
+    <SeqNo>KPGBMSD0000000093</SeqNo>
+    <Note />
+    <UserNo />
+    <Password />
+  </MessageHead>
+  <MessageBody>
+    <DTCFlow>
+      <PAYMENT_INFO_FB>
+        <PAYMENT_NO>KPGBMSD0000000093</PAYMENT_NO>
+        <STATUS_CODE>40</STATUS_CODE>
+        <OP_DATE>2014-07-07T00:00:11</OP_DATE>
+        <MEMO>银行预扣失败超过3天，系统自动审批退回。</MEMO>
+      </PAYMENT_INFO_FB>
+    </DTCFlow>
+  </MessageBody>
+</DTC_Message>

@@ -1,0 +1,273 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="form_style.css"/>
+    <link rel="stylesheet" type="text/css" href="css/jquery-ui.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/chosen.min.css"/>
+
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="js/jquery.form.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="js/chosen.jquery.min.js"></script>
+
+    <script type="text/javascript" src="scripts/resources.js"></script>
+    <script type="text/javascript" src="scripts/fundamental_forms.js"></script>
+
+    <script type="text/javascript">
+
+        LC_SOURCE = "ORDER";
+
+        function custom_validation() {
+            var pass = true;
+            //alert('Hello');
+            return pass;
+        }
+
+        function initForm() {
+            $('#myForm').attr('action', URL_POST_FORM_ORDER_NEW_MANUAL)
+        }
+
+        var goodCount = 0;
+
+        function rmGood(index) {
+            $('#good_no_'+index).remove();
+        }
+
+        function addGood() {
+            var wrap_div =
+                $('<div></div>')
+                .addClass('inner_form_wrapper')
+                .addClass('order_detail_item')
+                .appendTo('#order_details')
+                .wrap('<div id="good_no_'+goodCount+'" class="order_detail_item_border">');
+            //title
+            $(wrap_div)
+            .append('<h4 class="order_detail_title">GOOD_NO_'+(goodCount+1)+'</h4>')//title
+            .append('<input type="button" class="noFormat" value="Del" onclick="rmGood('+goodCount+')"/>')//rm button
+            .append('<hr>');
+            //海关
+            $('<input />', {
+                type: "text",
+                altname: "SKU",
+                name: "ORDER_DETAIL["+goodCount+"][SKU]",
+                class: "mandatory",
+                maxlength: "30"
+            }).appendTo(wrap_div);
+            $('<input />', {
+                type: "text",
+                altname: "GOODS_SPEC",
+                name: "ORDER_DETAIL["+goodCount+"][GOODS_SPEC]",
+                class: "mandatory",
+                maxlength: "200"
+            }).appendTo(wrap_div);
+            $('<select />', {
+                altname: "CURRENCY_CODE",
+                name: "ORDER_DETAIL["+goodCount+"][CURRENCY_CODE]",
+                class: "mandatory",
+            }).appendTo(wrap_div);
+            $('<input />', {
+                type: "text",
+                altname: "PRICE",
+                name: "ORDER_DETAIL["+goodCount+"][PRICE]",
+                class: "mandatory",
+                maxlength: "21"
+            }).appendTo(wrap_div);
+            $('<input />', {
+                type: "text",
+                altname: "QTY",
+                name: "ORDER_DETAIL["+goodCount+"][QTY]",
+                class: "mandatory",
+                maxlength: "11"
+            }).appendTo(wrap_div);
+            // $('<input />', {
+            //     type: "text",
+            //     altname: "GOODS_FEE",
+            //     name: "ORDER_DETAIL["+goodCount+"][GOODS_FEE]",
+            //     class: "mandatory",
+            //     maxlength: "21"
+            // }).appendTo(wrap_div);
+            // $('<input />', {
+            //     type: "text",
+            //     altname: "TAX_FEE",
+            //     name: "ORDER_DETAIL["+goodCount+"][TAX_FEE]",
+            //     class: "mandatory",
+            //     maxlength: "21"
+            // }).appendTo(wrap_div);
+
+            //西永
+            $('<hr>').appendTo(wrap_div);
+            $('<input />', {
+                type: "text",
+                altname: "XIYONG_F_UNIT",
+                name: "ORDER_DETAIL["+goodCount+"][XIYONG_F_UNIT]",
+                maxlength: "6"
+            }).appendTo(wrap_div);
+            // $('<input />', {
+            //     type: "text",
+            //     altname: "XIYONG_F_WARE_NO",
+            //     name: "ORDER_DETAIL["+goodCount+"][XIYONG_F_WARE_NO]",
+            //     maxlength: "20"
+            // }).appendTo(wrap_div);
+            // $('<input />', {
+            //     type: "text",
+            //     altname: "XIYONG_F_PRO_DATE",
+            //     name: "ORDER_DETAIL["+goodCount+"][XIYONG_F_PRO_DATE]",
+            //     class: "datepicker",
+            //     maxlength: "6"
+            // }).appendTo(wrap_div);
+            // $('<input />', {
+            //     type: "text",
+            //     altname: "XIYONG_F_OUT_DATE",
+            //     name: "ORDER_DETAIL["+goodCount+"][XIYONG_F_OUT_DATE]",
+            //     class: "datepicker",
+            //     maxlength: "6"
+            // }).appendTo(wrap_div);
+            // $('<input />', {
+            //     type: "text",
+            //     altname: "XIYONG_F_BLOCK_NO",
+            //     name: "ORDER_DETAIL["+goodCount+"][XIYONG_F_BLOCK_NO]",
+            //     maxlength: "30"
+            // }).appendTo(wrap_div);
+            $('<input />', {
+                type: "text",
+                altname: "XIYONG_F_REMARK_DETAIL",
+                name: "ORDER_DETAIL["+goodCount+"][XIYONG_F_REMARK_DETAIL]",
+                maxlength: "500"
+            }).appendTo(wrap_div);
+
+            formatForm('#good_no_'+goodCount, "ORDER_DETAIL");
+            goodCount++;
+
+        }
+
+    </script>
+
+
+
+</head>
+<body>
+<div class="maincontentinner1">
+    <div class="subPage">
+        <div class="title">
+            <h3>&nbsp </h3>
+        </div>
+        <hr />
+    </div>
+    <form id="myForm" method="post">
+        <div style="text-align:center">
+            <div class="inner_form_wrapper">
+                <!-- 海关 -->
+                <input type="text" name="CUSTOMS_CODE" class="mandatory" maxlength="4" />
+                <select name="BIZ_TYPE_CODE" class="mandatory special_selection">
+                    <option value="" hidden="hidden">请选择</option>
+                    <option value="I10"></option>
+                    <option value="I20"></option>
+                    <option value="E10"></option>
+                    <option value="E20"></option>
+                    <option value="E30"></option>
+                    <option value="E40"></option>
+                    <option value="E50"></option>
+                </select>
+                <input type="text" name="ORIGINAL_ORDER_NO" class="mandatory" maxlength="30" />
+                <input type="text" name="ESHOP_ENT_CODE" class="mandatory" maxlength="20" />
+                <input type="text" name="ESHOP_ENT_NAME" class="mandatory" maxlength="100" />
+                <select type="text" name="DESC_ARRI_COUNTRY_CODE" class="mandatory" maxlength="4"></select>
+                <select name="SHIP_TOOL_CODE" class="mandatory special_selection">
+                    <option value="" hidden="hidden">请选择</option>
+                    <option value="0"></option>
+                    <option value="1"></option>
+                    <option value="2"></option>
+                    <option value="3"></option>
+                    <option value="4"></option>
+                    <option value="5"></option>
+                    <option value="6"></option>
+                    <option value="7"></option>
+                    <option value="8"></option>
+                    <option value="9"></option>
+                    <option value="A"></option>
+                    <option value="H"></option>
+                    <option value="W"></option>
+                    <option value="X"></option>
+                    <option value="Y"></option>
+                    <option value="Z"></option>
+                </select>
+                <input type="text" name="RECEIVER_ID_NO" maxlength="20" />
+                <input type="text" name="RECEIVER_NAME" maxlength="100" />
+                <input type="text" name="RECEIVER_ADDRESS" maxlength="500" />
+                <input type="text" name="RECEIVER_TEL" maxlength="50" />
+                <!-- <input type="text" name="GOODS_FEE" class="mandatory" maxlength="21" /> -->
+                <!-- <input type="text" name="TAX_FEE" class="mandatory" maxlength="21" /> -->
+                <select name="SORTLINE_ID" class="mandatory special_selection">
+                    <option value="" hidden="hidden">请选择</option>
+                    <option value="SORTLINE01"></option>
+                    <option value="SORTLINE02"></option>
+                    <option value="SORTLINE03"></option>
+                    <option value="SORTLINE04"></option>
+                    <option value="SORTLINE05"></option>
+                    <option value="SORTLINE06"></option>
+                </select>
+                <input type="text" name="TRANSPORT_FEE" class="mandatory" maxlength="23" />
+                <select name="CHECK_TYPE" class="special_selection">
+                    <option value="" hidden="hidden">请选择</option>
+                    <option value="R"></option>
+                    <option value="P"></option>
+                </select>
+
+                <hr>
+                <!-- 支付单 -->
+                <input type="text" name="PAYMENT_ID_NO" maxlength="20" />
+                <input type="text" name="PAYMENT_NAME" maxlength="100" />
+                <input type="text" name="PAYMENT_TEL" maxlength="50" />
+                <input type="text" name="PAYMENT_ENT_CODE" maxlength="30" />
+                <input type="text" name="PAYMENT_ENT_NAME" class="mandatory" maxlength="30" />
+                <input type="text" name="PAYMENT_NO" class="mandatory" maxlength="30" />
+                <input type="text" name="PAY_AMOUNT" class="mandatory" maxlength="21" />
+                <input type="text" name="PAY_MEMO" maxlength="1000" />
+
+                <hr>
+                <!-- 西永 -->
+                <input type="text" name="XIYONG_BILL_TYPE" class="mandatory" maxlength="2" value="2"/>
+                <input type="text" name="XIYONG_ACOUNT_NO" class="mandatory" maxlength="20" value="001"/>
+                <input type="text" name="XIYONG_FCUST_NO" class="mandatory" maxlength="20" />
+                <input type="text" name="XIYONG_STOCK_IN_NO" class="mandatory" maxlength="5" value="01"/>
+                <input type="text" name="XIYONG_STOCK_OUT_NO" maxlength="5"/>
+                <input type="text" name="XIYONG_BILLER_NO" maxlength="10" />
+                <input type="text" name="XIYONG_CHECKER_NO" maxlength="10" />
+                <input type="text" name="XIYONG_BILL_DATE" class="mandatory datepicker" maxlength="30" />
+                <input type="text" name="XIYONG_DISCHARGE_PLACE" maxlength="30" />
+                <input type="text" name="XIYONG_DELIVER_PLACE" maxlength="30" />
+
+                <select name="XIYONG_PROVINCE" class="addr_selection province mandatory">
+                <input type="text" name="XIYONG_PROVINCE_CODE" class="addr_selection province mandatory" readonly="true" maxlength="8" />
+                <select name="XIYONG_CITY" class="addr_selection city mandatory">
+                <input type="text" name="XIYONG_CITY_CODE" class="addr_selection city mandatory" readonly="true" maxlength="8" />
+                <select name="XIYONG_AREA" class="addr_selection country mandatory">
+                <input type="text" name="XIYONG_AREA_CODE" class="addr_selection country mandatory" readonly="true" maxlength="8" />
+
+                <input type="text" name="XIYONG_ZIP" class="mandatory" maxlength="10" />
+                <input type="text" name="XIYONG_REMARK" maxlength="500" />
+                <select name="XIYONG_TYPE" class="special_selection mandatory">
+                    <option value="" hidden="hidden">请选择</option>
+                    <option value="Y"></option>
+                    <option value="N"></option>
+                </select>
+                <select name="XIYONG_BJFLAG" class="special_selection mandatory">
+                    <option value="" hidden="hidden">请选择</option>
+                    <option value="Y"></option>
+                    <option value="N"></option>
+                </select>
+                <input type="text" name="XIYONG_BJAMT" class="mandatory" maxlength="20" />
+
+            </div>
+            <div id="order_details"></div>
+            <input type="button" class="noFormat" value="Add Good" onclick="addGood()"/>
+            <input class="button" type="submit" id="test" value="提交" />
+            <div id="output1" style="display:none"></div>
+        </div>
+    </form>
+</div>
+</body>
+</html>

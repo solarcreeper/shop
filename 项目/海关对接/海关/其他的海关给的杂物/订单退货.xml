@@ -1,0 +1,28 @@
+﻿<DTC_Message>
+  <MessageHead>
+    <MessageType>ORDER_RETURN_INFO</MessageType>
+    <MessageId>990F0B724B46F21C884DAB5E88642FCF</MessageId>
+    <ActionType>1</ActionType>
+    <MessageTime>2014-06-24T23:24:43</MessageTime>
+    <SenderId>50052602BE</SenderId>
+    <ReceiverId>CQITC</ReceiverId>
+    <SenderAddress />
+    <ReceiverAddress />
+    <PlatFormNo />
+    <CustomCode />
+    <SeqNo />
+    <Note />
+    <UserNo>50052602BE</UserNo>
+    <Password>igetmall201455</Password>
+  </MessageHead>
+  <MessageBody>
+    <DTCFlow>
+      <ORDER_RETURN_INFO>
+        <ORIGINAL_ORDER_NO>100000858</ORIGINAL_ORDER_NO>
+        <ESHOP_ENT_CODE>50052602BE</ESHOP_ENT_CODE>
+        <RETURN_REASON>多拍/拍错/不想要</RETURN_REASON>
+        <QUALITY_REPORT />
+      </ORDER_RETURN_INFO>
+    </DTCFlow>
+  </MessageBody>
+</DTC_Message>

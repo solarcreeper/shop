@@ -1,0 +1,33 @@
+﻿<DTC_Message>
+  <MessageHead>
+    <MessageType>TAX_PREPAY_COMMAND</MessageType>
+    <MessageId>17EC615F1C9F41F684E87EC8FCAA63BD</MessageId>
+    <MessageTime>2014-07-04T14:28:42</MessageTime>
+    <SenderId>CQITC</SenderId>
+    <SenderAddress />
+    <ReceiverId>50052602BE</ReceiverId>
+    <ReceiverAddress />
+    <PlatFormNo />
+    <CustomCode />
+    <SeqNo>Y20140704000001</SeqNo>
+    <Note />
+    <UserNo />
+    <Password />
+  </MessageHead>
+  <MessageBody>
+    <DTCFlow>
+      <TAX_PREPAY_COMMAND>
+        <PRE_PAY_NO>Y20140704000001</PRE_PAY_NO>
+        <ORDER_NO>BMSD-I140704-0000072</ORDER_NO>
+        <TAX_FEE>96</TAX_FEE>
+        <CURRENCY_CODE>142</CURRENCY_CODE>
+        <CURRENCY_NAME>人民币</CURRENCY_NAME>
+        <BANK_CODE>B0005B250000001</BANK_CODE>
+        <BANK_NAME>交通银行</BANK_NAME>
+        <BANK_ACCOUNT>500102022018110089264</BANK_ACCOUNT>
+        <ESHOP_ENT_CODE>50052602BE</ESHOP_ENT_CODE>
+        <ESHOP_ENT_NAME>重庆商社</ESHOP_ENT_NAME>
+      </TAX_PREPAY_COMMAND>
+    </DTCFlow>
+  </MessageBody>
+</DTC_Message>

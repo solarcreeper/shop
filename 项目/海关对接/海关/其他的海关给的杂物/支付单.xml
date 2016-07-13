@@ -1,0 +1,37 @@
+﻿<DTC_Message>
+  <MessageHead>
+    <MessageType>PAYMENT_INFO</MessageType>
+    <MessageId>c9ff54a4-0372-4e66-bf79-be727318aa83</MessageId>
+    <ActionType>1</ActionType>
+    <MessageTime>2014-07-04 14:26:00</MessageTime>
+    <SenderId>50052602BE</SenderId>
+    <ReceiverId>CQITC</ReceiverId>
+    <SenderAddress />
+    <ReceiverAddress />
+    <PlatFormNo />
+    <CustomCode />
+    <SeqNo />
+    <Note />
+    <UserNo>50052602BE</UserNo>
+    <Password>88e42280343934672d6dcd7ce15049de</Password>
+  </MessageHead>
+  <MessageBody>
+    <DTCFlow>
+      <PAYMENT_INFO>
+        <CUSTOMS_CODE>8013</CUSTOMS_CODE>
+        <BIZ_TYPE_CODE>I20</BIZ_TYPE_CODE>
+        <ESHOP_ENT_CODE>50052602BE</ESHOP_ENT_CODE>
+        <ESHOP_ENT_NAME>白玛斯德国际贸易重庆有限公司</ESHOP_ENT_NAME>
+        <PAYMENT_ENT_CODE>50052602BE</PAYMENT_ENT_CODE>
+        <PAYMENT_ENT_NAME>白玛斯德国际贸易重庆有限公司</PAYMENT_ENT_NAME>
+        <PAYMENT_NO>KPGBMSD0000000080</PAYMENT_NO>
+        <ORIGINAL_ORDER_NO>KPGBMSD0000000080</ORIGINAL_ORDER_NO>
+        <PAY_AMOUNT>240.0000</PAY_AMOUNT>
+        <GOODS_FEE>240.0000</GOODS_FEE>
+        <TAX_FEE>0</TAX_FEE>
+        <CURRENCY_CODE>142</CURRENCY_CODE>
+        <MEMO />
+      </PAYMENT_INFO>
+    </DTCFlow>
+  </MessageBody>
+</DTC_Message>

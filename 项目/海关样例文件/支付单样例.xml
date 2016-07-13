@@ -1,0 +1,36 @@
+﻿<DTC_Message>
+    <MessageHead>
+        <MessageType>PAYMENT_INFO</MessageType>
+        <MessageId>20150726111343BKUMMCCNOL</MessageId>
+        <MessageTime>2015-07-26 11:13:43</MessageTime>
+        <SenderId>dqiang2015</SenderId>
+        <ReceiverId>CQITC</ReceiverId>
+        <SenderAddress />
+        <ReceiverAddress />
+        <PlatFormNo />
+        <CustomCode />
+        <SeqNo />
+        <Note />
+        <UserNo>dqiang2015</UserNo>
+        <Password>CBBD88CF598EF170994FA8A4C1118DAB</Password>
+    </MessageHead>
+    <MessageBody>
+        <DTCFlow>
+            <PAYMENT_INFO>
+                <CUSTOMS_CODE>8013</CUSTOMS_CODE>
+                <BIZ_TYPE_CODE>I20</BIZ_TYPE_CODE>
+                <ESHOP_ENT_CODE>dqiang2015</ESHOP_ENT_CODE>
+                <ESHOP_ENT_NAME>重庆点趣国际贸易有限公司</ESHOP_ENT_NAME>
+                <PAYMENT_ENT_CODE>dqiang2015</PAYMENT_ENT_CODE>
+                <PAYMENT_ENT_NAME>重庆点趣国际贸易有限公司</PAYMENT_ENT_NAME>
+                <PAYMENT_NO>2015062494202</PAYMENT_NO>
+                <ORIGINAL_ORDER_NO>2015062494202</ORIGINAL_ORDER_NO>
+                <PAY_AMOUNT>119.00</PAY_AMOUNT>
+                <GOODS_FEE>119.00</GOODS_FEE>
+                <TAX_FEE>0</TAX_FEE>
+                <CURRENCY_CODE>142</CURRENCY_CODE>
+                <MEMO />
+            </PAYMENT_INFO>
+        </DTCFlow>
+    </MessageBody>
+</DTC_Message>

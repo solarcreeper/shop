@@ -1,0 +1,274 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="css/jquery.dataTables.min.css"/>
+    <link rel="stylesheet" type="text/css" href="table_style.css"/>
+
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+
+    <script type="text/javascript" src="scripts/resources.js"></script>
+    <script type="text/javascript" src="scripts/fundamental_tables.js"></script>
+	
+	
+
+	
+    <script>
+        LC_SOURCE = "PURCHASE";
+
+        // translate order_details table befor auto translate;
+        pre_translate = true;
+        function pre_translate_callback() {
+            translate_titles("PURCHASE_DETAIL", "#order_details");
+        };
+
+        function format(d) {
+            // `d` is the original data object for the row
+            // This array of class defines all content to display in detail panel
+            // the order should be strictly up to the hadbook and stay same with the server
+            // All item should be assigned with a type.
+            // see fundamental_tables.js : disp_format for details
+            var ref = [
+                {name: "F_ACCOUNT_NO", type: "text"},
+                {name: "F_ERP_FROMOTH", type: "text"},
+                {name: "F_ERP_ORDER_BILL_NO", type: "text"},
+                {name: "F_ERP_BILL_NO", type: "text"},
+                {name: "F_CUST_NO", type: "text"},
+                {name: "F_BILLER_NO", type: "text"},
+                {name: "F_BILLER_P_NO", type: "text"},
+                {name: "F_CHECKER_NO", type: "text"},
+                {name: "F_BILL_DATE", type: "text"},
+                {name: "F_REMARK", type: "text"},
+                {name: "CUSTNAME", type: "text"},
+                {name: "LINKMAN", type: "text"},
+                {name: "TEL", type: "text"},
+                {name: "DELIVER_NO", type: "text"},
+                {name: "DELIVER_NAME", type: "text"},
+                {name: "DELIVER_TIME", type: "sp_sel"},
+                {name: "ARRIVE_TIME", type: "text"},
+                {name: "QTY", type: "text"},
+                {name: "UNIT", type: "text"}
+
+            ]
+            var table = $('<table style="width:100%; border:solid grey 2px;"></table>');
+            var tr;
+            var count = 0;
+            $.each(ref, (function(index, item) {
+                count++;
+                if (index % 2 == 0)
+                    tr = $('<tr></tr>').addClass("detail").appendTo(table);
+                $('<td>').addClass("detail title").text(item.name).appendTo(tr);
+                $('<td>').addClass("detail content").append(disp_format(d[item.name], item.type, item.name)).appendTo(tr);
+            }));
+            //process STATUS_CODE
+            if (count % 2 )
+            if (count % 2 !== 0) {
+                $('<td>').appendTo(tr);
+                $('<td>').appendTo(tr);
+            }
+
+            var slider_wrap = $('<div>').addClass('slider').css('display','none')
+                .append(table);
+            return slider_wrap;
+
+        }
+
+        function initTable() {
+            var table_head = $('#order_head').DataTable({
+                "language": {
+                    "url": "table_ui_cn.json"
+                },
+                "columnDefs": [{
+                    "targets": "_all",
+                    "className": "dt-center"
+                }],
+                "columns": [
+                    {   "data": "INDEX" },
+                    {   "data": "F_ERP_BILL_NO" },
+                    {   "data": "F_BILL_DATE" },
+                    {   "data": "QTY" },
+                    {   "data": "FLAG",
+                        "render": function ( data, type, full, meta ) {
+                            switch (data) {
+                                case "1":
+                                    return "<span style='color:green'>同步完成</span>";
+                                default:
+                                    return "<span style='color:orange'>等待处理</span>";
+                            };
+                        }
+                    },
+                    {   //details
+                        "class": 'details-control dt-center',
+                        "orderable": false,
+                        "data": null,
+                        "defaultContent" :'<span class="details-controller"><i class="fa fa-search"></span>'
+                    },
+                    {   //sync
+                        "class": 'sync-control dt-center',
+                        "orderable": false,
+                        "data": "FLAG",
+                        "render": function ( data, type, full, meta ) {
+                            switch (data) {
+                                case "0":
+                                    return '<span class="sync-controller"><i class="fa fa-exchange"></span>';
+                                default:
+                                    return '';
+                            };
+                        }
+                    },
+                    {   //refresh
+                        "class": 'refresh-control dt-center',
+                        "orderable": false,
+                        "data": null,
+                        "defaultContent" :'<span class="refresh-controller"><i class="fa fa-refresh"></span>'
+                    }
+                ],
+                "processing": true,
+                "serverSide": true,
+                "ajax": {
+                    "url":  URL_GET_GOODS_QUERY_PURCHASE_TABLE_HEAD,
+                    "dataSrc": showResponseInTable
+                }
+            });
+
+            var table_detail = $('#order_details').DataTable({
+                "language": {
+                    "url": "table_ui_cn.json"
+                },
+                "columnDefs": [{
+                    "targets": "_all",
+                    "className": "dt-center"
+                }],
+                "columns": [
+                    {   "data": "INDEX" },
+                    {   "data": "F_ICNO" },
+                    {   "data": "F_UNIT" },
+                    {   "data": "F_PRICE",
+                        "render": function(data, type, full, meta) {
+                            return (data * 1).toFixed(2);
+                        }
+                    },
+                    {   "data": "F_QTY" },
+                    {   "data": "F_AMOUNT",
+                        "render": function(data, type, full, meta) {
+                            return (data * 1).toFixed(2);
+                        }
+                    },
+                    // {   "data": "F_WARE_NO" },
+                    {   "data": "F_PRO_DATE" },
+                    {   "data": "F_OUT_DATE" },
+                    {   "data": "F_BLOCK_NO" },
+                    {   "data": "F_REMARK_DTAIL" }
+                ],
+                "processing": true,
+                "serverSide": true,
+                "ajax": {
+                    "url":  URL_GET_GOODS_QUERY_PURCHASE_TABLE_DETAIL + "&F_ERP_BILL_NO=",
+                    "dataSrc": showResponseInTable
+                }
+            });
+
+            // Add event listener for opening and closing details
+            $('#order_head tbody').on('click', 'td>span.details-controller', function () {
+                var tr = $(this).closest('tr');
+                var row = table_head.row(tr);
+                if (row.child.isShown()) {
+                    // This row is already open - close it
+                    $('div.slider', row.child()).slideUp(200, function() {
+                        row.child.hide();
+                        tr.removeClass('shown');
+                    });
+                }
+                else {
+                    // Open this row
+                    row.child(format(row.data()), 'no-padding').show();
+                    translate_titles();
+                    tr.addClass('shown');
+                    $('div.slider', row.child()).slideDown(100);
+                }
+            });
+
+            // Add event listener for sync
+            $('#order_head tbody').on('click', 'td>span.sync-controller', function () {
+                var tr = $(this).closest('tr');
+                var row = table_head.row(tr);
+                // Emit extra-operation call
+                var order_no = row.data().F_ERP_BILL_NO;
+                $.getJSON(URL_GET_GOODS_QUERY_PURCHASE_ACT_SYNC + "&F_ERP_BILL_NO=" + order_no, showResponseInGET);
+            });
+
+            // Add event listener for reload order details
+            $('#order_head tbody').on('click', 'tr', function () {
+                var row = table_head.row($(this));
+                var order_no = row.data().F_ERP_BILL_NO;
+                table_detail.ajax.url(URL_GET_GOODS_QUERY_PURCHASE_TABLE_DETAIL + "&F_ERP_BILL_NO=" + order_no).load();
+            });
+
+            // Add event listener for refresh
+            $('#order_head tbody').on('click', 'td>span.refresh-controller', function () {
+                var tr = $(this).closest('tr');
+                var row = table_head.row(tr);
+                var order_no = row.data().F_ERP_BILL_NO;
+                $.getJSON(URL_GET_GOODS_QUERY_PURCHASE_ACT_REFRESH + "&F_ERP_BILL_NO=" + order_no, function(data) {
+                    if (data.error_code === "1000") table_head.ajax.reload();
+                    showResponseInGET(data);
+                });
+            });
+        };
+    </script>
+</head>
+<body>
+<div class="maincontentinner1">
+    <div class="subPage">
+       
+        <hr />
+    </div>
+    <table id="order_head" class="display" cellspacing="0" style="overflow-x:scroll">
+	    <div class="title">
+            <h3><center><b>商品采购单查询表</b></center></h3>
+         </div>
+        <thead>
+            <tr style="background-color:rgba(114,178,141,0.2)">
+                <th class="title">序号</th>
+
+                <th class="title">F_ERP_BILL_NO</th>
+                <th class="title">F_BILL_DATE</th>
+                <th class="title">QTY</th>
+
+                <th class="title">状态</th>
+                <th class="title">详情</th>
+                <th class="title">同步</th>
+                <th class="title">刷新</th>
+
+            </tr>
+        </thead>
+    </table>
+    <table id="order_details" class="display" cellspacing="0" style="overflow-x:scroll">
+	<div class="title">
+            <h3><center><b>商品货号查询表</b></center></h3>
+         </div>
+        <thead>
+            <tr style="background-color:rgba(114,178,141,0.2)">
+                <th class="title">序号</th>
+
+                <th class="title">F_ICNO</th>
+                <th class="title">F_UNIT</th>
+                <th class="title">F_PRICE</th>
+                <th class="title">F_QTY</th>
+                <th class="title">F_AMOUNT</th>
+                <!-- <th class="title">F_WARE_NO</th> -->
+                <th class="title">F_PRO_DATE</th>
+                <th class="title">F_OUT_DATE</th>
+                <th class="title">F_BLOCK_NO</th>
+                <th class="title">F_REMARK_DTAIL</th>
+
+            </tr>
+        </thead>
+    </table>
+</div>
+
+</body>
+</html>

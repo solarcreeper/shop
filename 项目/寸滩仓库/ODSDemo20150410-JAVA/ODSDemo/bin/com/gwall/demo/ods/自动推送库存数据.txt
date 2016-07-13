@@ -1,0 +1,1 @@
+appkey=test&service=pubSyncItemStockInfo&format=JSON&content=[{"goodsId":"1001","outerId":"DB20140819000002","skuId":"PT135","quantity":"200","type":"全量更新"},{"goodsId":"1001","outerId":"DW20140819000002","skuId":"PT124","quantity":"555","type":"全量更新"}]

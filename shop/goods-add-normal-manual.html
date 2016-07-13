@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="form_style.css"/>
+
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="js/jquery.form.min.js"></script>
+
+    <script type="text/javascript" src="scripts/resources.js"></script>
+    <script type="text/javascript" src="scripts/fundamental_forms.js"></script>
+    <script type="text/javascript">
+
+        LC_SOURCE = "GOODS";
+
+        function custom_validation() {
+            var pass = true;
+            //alert('Hello');
+            return pass;
+        }
+
+        function initForm() {
+            $('#myForm').attr('action', URL_POST_FORM_GOODS_ADD_NORMAL_MANUAL)
+        }
+
+    </script>
+
+</head>
+<body>
+<div class="maincontentinner1">
+    <div class="subPage">
+        <div class="title">
+            <h3>&nbsp </h3>
+        </div>
+        <hr />
+    </div>
+    <form id="myForm" method="post">
+        <div style="text-align:center">
+            <div class="inner_form_wrapper">
+                <input type="text" name="SKU" class="mandatory" maxlength="20" />
+                <input type="text" name="GOODS_NAME" class="mandatory" maxlength="100" />
+                <input type="text" name="GOODS_SPEC" class="mandatory" maxlength="600" />
+                <input type="text" name="PRICE" class="mandatory" maxlength="30" />
+                <input type="text" name="TOTAL_STOCK" class="mandatory" maxlength="30" />
+                <input class="image" accept="image/*" type="file" target="PICTURE" />
+            </div>
+            <input class="button" type="submit" id="test" value="提交" />
+            <div id="output1" style="display:none"></div>
+        </div>
+    </form>
+<div>
+</body>
+</html>

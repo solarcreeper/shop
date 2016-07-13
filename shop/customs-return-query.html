@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery.dataTables.min.js" type="text/javascript"></script>
+    <script src="scripts/fundamental_tables.js" type="text/javascript"></script>
+    <script type="text/javascript" src="scripts/resources.js"></script>
+    <link rel="stylesheet" href="css/jquery.dataTables.min.css" type="text/css" />
+    <link rel="stylesheet" href="table_style.css" type="text/css" />
+    <script>
+        LC_SOURCE = "CUSTOMS_RETURN";
+        function initTable() {
+            var table = $('#example').DataTable({
+                "language": {
+                    "url": "table_ui_cn.json"
+                },
+                "columnDefs": [{
+                    "targets": "_all",
+                    "className": "dt-center"
+                }],
+                "columns": [
+                    null, //id
+                    // item 1~8 , no.3 invisible
+                    null, null,  null,
+                    {   //details
+                        "class": 'img-control dt-center',
+                        "orderable": false,
+                        "data": null,
+                        "defaultContent" :'<span class="img-controller"><i class="fa fa-search"></i></span>'
+                    },
+                    null, null, null
+                ],
+                "processing": true,
+                "serverSide": true,
+                "ajax": serverRoot+"/shop_server/order_return_info_query.php"
+            });
+
+            // Add event listener for img_preview
+            $('#example tbody').on('click', 'td.img-control', function () {
+                var tr = $(this).closest('tr');
+                var row = table.row(tr);
+                $("#img_preview img").attr("src", row.data()[4]);
+                $("#img_preview").css("display","block");
+            });
+
+        };
+
+        function rmImgPreview() {
+            $("#img_preview").css("display","none");
+        }
+
+
+
+    </script>
+</head>
+<body>
+    <div class="subPage">
+        <div class="title">
+            <h1>查询退货信息</h1>
+        </div>
+        <hr />
+    </div>
+    <table id="example" class="display" cellspacing="0" style="overflow-x:scroll">
+        <thead>
+            <tr>
+                <th class="title">序号</th>
+
+                <th class="title">ORIGINAL_ORDER_NO</th>
+                <th class="title">ESHOP_ENT_CODE</th>
+                <th class="title">RETURN_REASON</th>
+                <th class="title">QUALITY_REPORT</th>
+
+                <th class="title">STATUS_CODE</th>
+                <th class="title">OP_DATE</th>
+                <th class="title">MEMO</th>
+
+            </tr>
+        </thead>
+    </table>
+
+    <div id="img_preview" onclick="rmImgPreview()" >
+        <img>
+    </div>
+
+    <script>
+
+    </script>
+</body>
+</html>

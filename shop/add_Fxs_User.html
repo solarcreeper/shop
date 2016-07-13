@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title></title>
+		<meta charset="utf-8" />
+   	    <script type="text/javascript" src="js/jquery.js"></script>
+        <script type="text/javascript" src="js/jquery.cookie.js"></script>
+        <script type="text/javascript" src="js/jquery.form.min.js"></script>
+        <script type="text/javascript" src="scripts/resources.js"></script>
+	
+		<script src="scripts/add_fxs_user.js" type="text/javascript"></script>
+		<script src="js/jquery.dataTables.min.js" type="text/javascript" ></script>
+		<link rel="stylesheet" href="css/jquery.dataTables.min.css" />
+		<style>
+			label {
+				display: inline;
+				margin-right: 10px;
+			}
+			
+			.red {
+				color: red;
+			}
+			
+			.other {
+				font-weight: normal;
+			}
+			
+			.format-width {
+				width: 200px;
+			}
+			
+			.text-align {
+				text-align: right;
+			}
+			.dataTables_filter{
+			    position: static !important;
+                top: 12px;
+                right: 10px;
+			}
+			#goods_list {}
+		</style>
+		<script>
+			$(document).ready(function() {
+				$("#root-table").find("tr").each(function() {
+					$(this).find("td:first-child").width("15%");
+				});
+				
+				$("input[type='password']").blur(function(){
+					if($("input[type='password']").eq(0).val() != $("input[type='password']").eq(1).val()){
+						$(".confirm-password").text(" 两次输入的密码不相同!");
+					}else{
+						$(".confirm-password").text("");
+					}
+				});
+				
+				$("input[name='mobile']").blur(function(){
+					var reg = new RegExp("1[0-9]{10}");
+					if(reg.test($(this).val())){
+						$(".confirm-mobile").text("");
+					}else{
+						$(".confirm-mobile").text("请输入正确的手机号码！");
+					}
+				});
+				
+				$("input[name='discount']").blur(function(){
+					var val = Number($(this).val());
+					if(val >= 0 && val <= 100){
+						$(".confirm-discount").text("");
+					}else{
+						$(".confirm-discount").text("请输入正确的折扣！");
+					}
+				});
+				
+				$('#goods_list').dataTable({
+					"ajax": "../shop_server/fxs/add_fxs_user.php?func_type=goods_list",
+					"info": false,
+					"paging": false,
+					"ordering": false,
+				});
+			})
+		</script>
+	</head>
+
+	<body>
+	<div class="maincontentinner1">
+		<div>
+			<div>
+				<h3>&nbsp </h3>
+			</div>
+			<hr />
+		</div>
+		<form id="submit_args">
+			<table id="root-table" width="100%" border="0" cellspacing="0" cellpadding="5">
+				<tbody>
+					<tr>
+						<td width="100">
+							<div class="text-align">
+								<font class="red">*</font>用 户 名：</div>
+						</td>
+						<td>
+							<input required="required" name="username" type="text" class="format-width" /><span class="red" id="error"></span>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="text-align">
+								<font class="red">*</font>用户密码：</div>
+						</td>
+						<td>
+							<input required="required" name="password" type="password" maxlength="50" class="format-width" />
+							<font class="other">(请输入不少于8个字符且至少包括字母、数字！)</font>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="text-align">
+								<font class="red">*</font>确认密码：</div>
+						</td>
+						<td>
+							<input required="required" name="password" type="password" maxlength="50" class="format-width" />
+							<font class="confirm-password red"></font>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="text-align">
+								<font class="red">*</font>真实姓名：</div>
+						</td>
+						<td>
+							<input required="required" name="real_name" type="text" class="format-width" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="text-align">
+								邮箱：</div>
+						</td>
+						<td>
+							<input name="email" type="email" class="format-width" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="text-align">
+								<font class="red">*</font>手机号码：</div>
+						</td>
+						<td>
+							<input required="required" name="mobile" type="tel" class="format-width" />
+							<font class="confirm-mobile red"></font>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="text-align">
+								详细地址：</div>
+						</td>
+						<td>
+							<input name="address" type="text" class="format-width">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="text-align">
+								<font class="red">*</font>渠道商折扣：</div>
+						</td>
+						<td>
+							<input name="discount" type="text" class="format-width"> %
+							<font class="confirm-discount red"></font>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="text-align">
+								<font class="red">*</font>授权商品：</div>
+						</td>
+						<td>
+							<table id="goods_list" border="0">
+								<thead>
+									<tr>
+										<th></th>
+										<th></th>
+										<th></th>
+										<th></th>
+										<th></th>
+									</tr>
+								</thead>
+								<!--<tbody>
+									<tr>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+									</tr>
+								</tbody>-->
+								<tfoot>
+									<tr>
+										<th></th>
+										<th></th>
+										<th></th>
+										<th></th>
+										<th></th>
+									</tr>
+								</tfoot>
+							</table>
+							<div>
+								<input name="select_all" type="checkbox" id="select_all" />
+								<label for="select_all">全选</label>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="text-align">
+							</div>
+						</td>
+						<td>
+							<input type="submit" value="添加渠道" />
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</form>
+		</div>
+	</body>

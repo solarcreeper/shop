@@ -1,0 +1,49 @@
+<DTC_Message>
+  <MessageHead>
+    <MessageType>ORDER_INFO</MessageType>
+    <MessageId>A8A2C5E52924A114B300842B567E1315</MessageId>
+    <ActionType>1</ActionType>
+    <MessageTime>2014-07-21T13:06:51</MessageTime>
+    <SenderId>5005210033</SenderId>
+    <ReceiverId>CQITC</ReceiverId>
+    <SenderAddress />
+    <ReceiverAddress />
+    <PlatFormNo />
+    <CustomCode />
+    <SeqNo />
+    <Note />
+    <UserNo>5005210033</UserNo>
+    <Password>igetmall201455</Password>
+  </MessageHead>
+  <MessageBody>
+    <DTCFlow>
+      <ORDER_HEAD>
+        <CUSTOMS_CODE>8012</CUSTOMS_CODE>
+        <BIZ_TYPE_CODE>I20</BIZ_TYPE_CODE>
+        <ORIGINAL_ORDER_NO>2014070415535859</ORIGINAL_ORDER_NO>
+        <ESHOP_ENT_CODE>5005210033</ESHOP_ENT_CODE>
+        <ESHOP_ENT_NAME>重庆保税港区进出口商品贸易有限公司</ESHOP_ENT_NAME>
+        <DESP_ARRI_COUNTRY_CODE>324</DESP_ARRI_COUNTRY_CODE>
+        <SHIP_TOOL_CODE>Y</SHIP_TOOL_CODE>
+        <RECEIVER_ID_NO>500226198710271112</RECEIVER_ID_NO>
+        <RECEIVER_NAME>庄挺</RECEIVER_NAME>
+        <RECEIVER_ADDRESS>重庆重庆寸滩保税港区水港综合楼1604室</RECEIVER_ADDRESS>
+        <RECEIVER_TEL>13983892879</RECEIVER_TEL>
+        <GOODS_FEE>0.01</GOODS_FEE>
+        <TAX_FEE>0.00</TAX_FEE>
+        <GROSS_WEIGHT>0.6</GROSS_WEIGHT>
+        <PROXY_ENT_CODE />
+        <PROXY_ENT_NAME />
+        <ORDER_DETAIL>
+          <SKU>1147492340</SKU>
+          <GOODS_SPEC>带外壳的保温杯</GOODS_SPEC>
+          <CURRENCY_CODE>142</CURRENCY_CODE>
+          <PRICE>0.01</PRICE>
+          <QTY>1</QTY>
+          <GOODS_FEE>0.01</GOODS_FEE>
+          <TAX_FEE>0.001</TAX_FEE>
+        </ORDER_DETAIL>
+      </ORDER_HEAD>
+    </DTCFlow>
+  </MessageBody>
+</DTC_Message>

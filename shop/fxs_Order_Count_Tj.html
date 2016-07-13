@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title></title>
+		<meta charset="utf-8" />
+		<script type="text/javascript" src="js/jquery.js"></script>
+        <script type="text/javascript" src="js/jquery.cookie.js"></script>
+        <script type="text/javascript" src="js/jquery.form.min.js"></script>
+		<script src="js/jquery.dataTables.min.js" type="text/javascript"></script>
+		<script type="text/javascript" src="scripts/resources.js"></script>
+		<script src="scripts/fundamental_tables.js" type="text/javascript"></script>
+		<link rel="stylesheet" href="css/jquery.dataTables.min.css" type="text/css" />
+		<link rel="stylesheet" href="table_style.css" type="text/css" />
+		<style>
+			input,
+			label {
+				display: inline;
+				margin-right: 10px;
+			}
+		</style>
+		<script>
+			$(document).ready(function() {
+				$("#div-search").width("100%").find("select").width("10%");
+				$("tbody tr").css({
+					"font-weight": "normal"
+				});
+			})
+		</script>
+	</head>
+
+	<body>
+	<div class="maincontentinner1">
+		<div class="subPage">
+			<div class="title">
+				<h3>&nbsp </h3>
+			</div>
+			<hr />
+		</div>
+		<!-- 内容开始 -->
+		<div style="margin-bottom: 10px;" class="clearfix">
+
+			&nbsp;统计时间：
+			<input name="txtTimeBegin" type="text" id="txtTimeBegin" style="width: 80px" value="2015-11-01" /> 至
+			<input name="txtTimeEnd" type="text" id="txtTimeEnd" style="width: 80px" value="2015-11-26" /> &nbsp;
+			<input type="submit" name="btn_Search" value="搜索" id="btn_Search" class="button1" />
+		</div>
+
+		<div align="center" style="font-weight:bold; size:15px; font-size:15px; padding:1px;">
+			<span id="lbl_Fxs_Order_Month"></span></div>
+		<table class="sampleTable">
+			<tr>
+				<td class="tdchart">
+					<img id="Chart1" BorderDashStyle="Solid" src="images/ChartImg_1.png" alt="" usemap="#Chart1ImageMap" style="height:350px;width:650px;border-width:0px;" />
+					<map name="Chart1ImageMap" id="Chart1ImageMap">
+
+						<area shape="rect" coords="500,301,538,302" title="0" alt="0" />
+						<area shape="rect" coords="404,301,443,302" title="0" alt="0" />
+						<area shape="rect" coords="309,301,347,302" title="0" alt="0" />
+						<area shape="rect" coords="213,301,251,302" title="0" alt="0" />
+						<area shape="rect" coords="117,301,155,302" title="0" alt="0" />
+					</map>
+				</td>
+			</tr>
+		</table>
+		</div>
+		<!-- 内容结束 -->
+	</body>
+
+</html>
